@@ -1,0 +1,9 @@
+:root {
+    --min-width: 1300;
+    --max-width: 1600;
+    --fz: clamp(10px, calc(100vw / var(--min-width) * 10), calc(var(--max-width) / 1300 * 10px));
+    font-size: var(--fz);
+    --scrollbar: 0;
+}
+
+$page-padding: 3rem;

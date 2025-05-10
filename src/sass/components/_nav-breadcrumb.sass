@@ -1,0 +1,20 @@
+@use '../base/global' as *;
+    
+.nav-breadcrumb
+    position: fixed
+    left: 3rem
+    bottom: 3rem
+    font-size: 0
+    // ol
+    li
+        position: relative
+        +fontStyle(14)
+        &:not(:last-of-type)
+            color: $clr-gray-4
+            &::after
+                content: '>'
+                margin: 0 1rem
+        &:last-of-type
+            color: $clr-white
+
+        

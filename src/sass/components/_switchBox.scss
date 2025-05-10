@@ -1,0 +1,130 @@
+@use '../base/global' as *;
+
+$switch-sizes: (
+    // 尺寸
+    // 半徑
+    // 距離邊邊
+    small: (
+        slider-radius: 1vh,
+        slider-padding: .3vh
+    ),
+    medium: (
+        slider-radius: 1.2vh,
+        slider-padding: .3vh
+    ),
+    large: (
+        slider-radius: 1.5vh,
+        slider-padding: .4vh
+    )
+);
+
+// 不能用的寫法
+// map-get() 在 LibSass（舊版 Sass 編譯器）中只能接受 2 個參數，所以這樣寫不行
+// $radius: map-get($switch-sizes, $size, slider-radius);
+// $padding: map-get($switch-sizes, $size, slider-padding);
+
+// 預設尺寸
+// 先取得該尺寸的 map，再分別取得 slider-radius 和 slider-padding;
+$switchBox-default-size: small;
+$switchBox-default-values: map-get($switch-sizes, $switchBox-default-size);
+$switchBox-default-radius: map-get($switchBox-default-values, slider-radius);
+$switchBox-default-padding: map-get($switchBox-default-values, slider-padding);
+
+@mixin switchBox-size-s{
+    $size-s: map-get($switch-sizes, small);
+    --slider-radius: #{map-get($size-s, slider-radius)};
+    --slider-padding: #{map-get($size-s, slider-padding)};
+}
+
+@mixin switchBox-size-m{
+    $size-m: map-get($switch-sizes, medium);
+    --slider-radius: #{map-get($size-m, slider-radius)};
+    --slider-padding: #{map-get($size-m, slider-padding)};
+    .switch-tit{
+        font-size: $fontSize-16;
+    }
+}
+
+@mixin switchBox-size-l{
+    $size-l: map-get($switch-sizes, large);
+    --slider-radius: #{map-get($size-l, slider-radius)};
+    --slider-padding: #{map-get($size-l, slider-padding)};
+    .switch-tit{
+        font-size: $fontSize-18;
+    }
+}
+
+@mixin switchBox-dark-bg($padding){
+    padding: $padding;
+    padding-right: calc(#{$padding} * 2);
+    border-radius: 50px;
+    box-shadow: 0 0 5px $clr-font-000_9 inset;
+    background-color: $clr-font-000_5;
+}
+
+@mixin switchBox-color($slider){
+    input:checked{
+        & ~ .switch-tit{
+            text-shadow: 0 0 2px $slider;
+        }
+        & ~ .switch-slider::before{
+            left: 0;
+            background-color: $slider;
+        }
+    }
+}
+
+.switchBox{
+
+    --slider-radius: #{$switchBox-default-radius};
+    --slider-padding: #{$switchBox-default-padding};
+
+    cursor: pointer;
+    position: relative;
+    width: fit-content;
+    white-space: nowrap;
+    input{
+        display: none;
+    }
+    .switch-tit{
+        font-size: $fontSize-14;
+        line-height: 1;
+        color: $clr-font-FFF_3;
+        vertical-align: middle;
+        transition: .3s;
+    }
+    .switch-slider{
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        height: calc( var(--slider-radius) * 2 );
+        width: calc( var(--slider-radius) * 4 );
+        margin-right: 5px;
+        border-radius: 50px;
+        overflow: hidden;
+        transition: .3s;
+        border: 10x solid #fff;
+        &::before{
+            content: '';
+            position: absolute;
+            width: calc( var(--slider-radius) * 2 + var(--slider-radius) * 4 );
+            height: 100%;
+            top: 0;
+            left: calc( var(--slider-radius) * 2 * -1 );
+            background-color: $clr-font-FFF_3;
+            mask: radial-gradient(circle calc( var(--slider-radius) - var(--slider-padding)) at center, transparent 99%, #000 100%);
+            -webkit-mask: radial-gradient(circle calc( var(--slider-radius) - var(--slider-padding)) at center, transparent 99%, #000 100%);
+            transition: .3s;
+        }
+    }
+    input:checked{
+        & ~ .switch-tit{
+            color: $clr-font-FFF_9;
+            // text-shadow: 0 0 2px $clr-font-FFF_9;
+        }
+        & ~ .switch-slider::before{
+            left: 0;
+            background-color: $clr-font-FFF_9;
+        }
+    }
+}

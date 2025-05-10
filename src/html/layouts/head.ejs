@@ -1,0 +1,39 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="這裡是緯育牌 KUMA 系列的主頁。我們提供實用且設計精美的文具，陪你度過人生中的大小時刻，不論學習、工作還是創作，KUMA 都是你最好的夥伴！">
+    <!-- OGP設定 -->
+    <meta property="og:type" content="website">
+	<meta property="og:title" content="KUMA | 陪伴你的好橡皮">
+	<meta property="og:url" content="https://chubbyrabi.github.io/KUMA/">
+	<meta property="og:image" content="https://raw.githubusercontent.com/chubbyrabi/KUMA/dev/pic/logo/og-img.png">
+	<meta property="og:site_name" content="KUMA | 陪伴你的好橡皮">
+	<meta property="og:description" content="陪你走過人生中的大小時刻，當你有需要，我們一直都在｜KUMA">
+    <!-- OGP設定 -->
+    <% if (page === 'index') { %>
+        <title>Fly High</title>
+    <% } else if (page === 'about') { %>
+        <title>Fly High | About Us</title>
+    <% } else if (page === 'news') { %>
+        <title>Fly High | News</title>
+    <% } else if (page === 'team') { %>
+        <title>Fly High | Our Team</title>
+    <% } %>
+
+    <!-- ————————————————————————— 首頁 ————————————————————————— -->
+    <% if (page === 'index') { %>
+        <link rel="shortcut icon" href="flyHigh.ico" type="image/x-icon">
+        <link rel="stylesheet" href="library/icomoon-feather/style.css">
+        <link rel="stylesheet" href="css/main.min.css">
+    <!-- ————————————————————————— 分頁 ————————————————————————— -->
+    <% } else { %>
+        <link rel="shortcut icon" href="../flyHigh.ico" type="image/x-icon">
+        <link rel="stylesheet" href="../library/icomoon-feather/style.css">
+        <link rel="stylesheet" href="../css/main.min.css">
+    <% } %>
+</head>

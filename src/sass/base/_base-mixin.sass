@@ -1,0 +1,46 @@
+// 橫的滾動條
+@mixin scrollBar_horizontal($height)
+	overflow-x: auto
+	overflow-y: hidden
+	&::-webkit-scrollbar
+		height: $height
+		border-radius: $height
+	&::-webkit-scrollbar-track
+		border: none
+		background-color: transparent
+	&::-webkit-scrollbar-thumb
+		cursor: pointer
+		border-radius: $height
+		background-color: $clr-font-000_3
+	&::-webkit-scrollbar-thumb:hover 
+		background-color: $clr-font-000_5
+	&::-webkit-scrollbar-button,
+	&::-webkit-scrollbar-corner,
+	&::-webkit-resizer
+		background-color: transparent
+
+// 直的滾動條
+@mixin scrollBar_vertical($width)
+	overflow-x: hidden
+	overflow-y: auto
+	&::-webkit-scrollbar
+		width: $width
+		border-radius: $width
+	&::-webkit-scrollbar-track
+		border: none
+		background-color: transparent
+	&::-webkit-scrollbar-thumb
+		cursor: pointer
+		border-radius: $width
+		background-color: $clr-font-FFF_3
+	&::-webkit-scrollbar-thumb:hover 
+		background-color: $clr-font-FFF_5
+	&::-webkit-scrollbar-button,
+	&::-webkit-scrollbar-corner,
+	&::-webkit-resizer
+		background-color: transparent
+
+// 背景模糊
+@mixin blur($value: 5px)
+	backdrop-filter: blur($value)
+	-webkit-backdrop-filter: blur($value)

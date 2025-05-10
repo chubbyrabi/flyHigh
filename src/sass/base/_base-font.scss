@@ -1,0 +1,111 @@
+@use 'sass:map';
+
+// 英文：Inter
+@font-face {
+	font-family: 'Inter';
+	src: url('../library/fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+// 日文：Noto Sans JP
+@font-face {
+	font-family: 'NotoSansJP';
+	src: url('../library/fonts/NotoSansJP-VariableFont_wght.ttf') format('truetype');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+// 中文：Noto Sans TC（繁體）
+@font-face {
+	font-family: 'NotoSansTC';
+	src: url('../library/fonts/NotoSansTC-VariableFont_wght.ttf') format('truetype');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+html {
+	font-family: 'Inter', sans-serif;
+}
+
+:lang(ja) {
+	font-family: 'Inter', 'NotoSansJP', sans-serif;
+}
+
+:lang(zh-TW) {
+	font-family: 'Inter', 'NotoSansTC', sans-serif;
+}
+
+// 字級
+// $fontSizes: (
+// 	12: 12px,
+// 	14: 14px,
+// 	16: 16px,
+// 	18: 18px,
+// 	20: 20px,
+// 	24: 24px,
+// 	32: 32px,
+// 	48: 48px
+// );
+
+// 字級
+$fontSizes: (
+	12: 1.2rem,
+	14: 1.4rem,
+	16: 1.6rem,
+	18: 1.8rem,
+	20: 2.0rem,
+	24: 2.4rem,
+	32: 3.2rem,
+	40: 4.0rem,
+	48: 4.8rem
+);
+
+// 字重
+$fontWeights: (
+	12: 400,
+	14: 400,
+	16: 400,
+	18: 500,
+	20: 600,
+	24: 700,
+	32: 700,
+	40: 800,
+	48: 800
+);
+
+// 行高
+$lineHeights: (
+	12: 1.4,
+	14: 1.4,
+	16: 1.5,
+	18: 1.5,
+	20: 1.5,
+	24: 1.4,
+	32: 1.2,
+	40: 1.1,
+	48: 1.1
+);
+
+// 字距
+$letterSpacings: (
+	12: 0,
+	14: 0,
+	16: 0,
+	18: 0,
+	20: 0,
+	24: 0.02em,
+	32: 0.02em,
+	40: 0.03em,
+	48: 0.03em
+);
+
+@mixin fontStyle($size) {
+	font-size: map.get($fontSizes, $size);
+	font-weight: map.get($fontWeights, $size);
+	line-height: map.get($lineHeights, $size);
+	letter-spacing: map.get($letterSpacings, $size);
+}
