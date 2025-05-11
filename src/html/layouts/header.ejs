@@ -2,7 +2,7 @@
     <!-- ————————————————————————— 首頁 ————————————————————————— -->
     <% if (page === 'index') { %>
         <h1 class="header-logo">
-            <a href="/" aria-label="Fly High Home">
+            <a href="{{basePath}}index.html" aria-label="Fly High Home">
                 <%- include('../../img/logo.svg') %>
             </a>
             Fly High
@@ -19,7 +19,7 @@
     <!-- ————————————————————————— 分頁 ————————————————————————— -->
     <% } else { %>
         <div class="header-logo">
-            <a href="/" aria-label="Fly High Home">
+            <a href="{{basePath}}index.html" aria-label="Fly High Home">
                 <%- include('../../img/logo.svg') %>
             </a>
         </div>

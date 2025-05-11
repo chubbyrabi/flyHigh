@@ -11,6 +11,8 @@ const rename = require('gulp-rename');
 const replace = require('gulp-replace');
 const sass = require('gulp-sass')(require('sass'));
 const terser = require('gulp-terser');
+const timestamp = new Date().getTime(); // 使用目前時間戳當版本號
+
 
 // html
 function buildHtml(isMinify = true, basePath = '/dist/') {
@@ -25,8 +27,21 @@ function buildHtml(isMinify = true, basePath = '/dist/') {
                     }
                 }
             }))
+            // basePath
             .pipe(replace('{{basePath}}', basePath))
             .pipe(rename({ extname: '.html' }))
+            // 加 CSS/JS 版本號
+            .pipe(replace(/(href|src)=["']([^"']+\.(css|js))["']/g, function (match, attr, url) {
+                if (url.startsWith('http')) return match;
+                return `${attr}="${url}?v=${timestamp}"`;
+            }))
+
+            // 加圖片版本號
+            .pipe(replace(/(src)=["']([^"']+\.(png|jpg|jpeg|gif|svg|webp))["']/g, function (match, attr, url) {
+                if (url.startsWith('http')) return match;
+                return `${attr}="${url}?v=${timestamp}"`;
+            }))
+            // 壓縮 html
             .pipe(htmlmin({ removeComments: true }))
             .pipe(isMinify
                 ? htmlmin({
