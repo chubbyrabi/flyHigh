@@ -25,24 +25,26 @@
         </div>
         <nav class="header-nav" aria-label="Primary Navigation">
             <ul class="nav-ul">
-                <li><a href="index.html#section_opening">Top</a></li>
-                <li><a href="page-about.html">About Us</a></li>
-                <li><a href="page-team.html">Our Team</a></li>
-                <li><a href="page-news.html">News</a></li>
-                <li><a href="index.html#section_contact">Contact Us</a></li>
+                <li><a href="{{basePath}}index.html#section_opening">Top</a></li>
+                <li><a href="{{basePath}}html-pages/page-about.html">About Us</a></li>
+                <li><a href="{{basePath}}html-pages/page-team.html">Our Team</a></li>
+                <li><a href="{{basePath}}html-pages/page-news.html">News</a></li>
+                <li><a href="{{basePath}}index.html#section_contact">Contact Us</a></li>
             </ul>
         </nav>
     <% } %>
     <!-- ————————————————————————— 漢堡 ————————————————————————— -->
     <div class="header-hb">
-        <button class="hb-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="hb-menu">
+        <button class="hb-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="hb_menu">
             <span></span>
             <span></span>
         </button>
-        <ul id="hb-menu" class="hb-menu" aria-label="Mobile Navigation" hidden>
-            <li><a href="page-about.html">About Us</a></li>
-            <li><a href="page-team.html">Our Team</a></li>
-            <li><a href="page-news.html">News</a></li>
-        </ul>
+        <div  id="hb_menu" class="hb-menu" aria-label="Mobile Navigation" hidden>
+            <ul class="menu-list">
+                <li><a href="{{basePath}}html-pages/page-about.html">About Us</a></li>
+                <li><a href="{{basePath}}html-pages/page-team.html">Our Team</a></li>
+                <li><a href="{{basePath}}html-pages/page-news.html">News</a></li>
+            </ul>
+        </div>
     </div>
 </header>

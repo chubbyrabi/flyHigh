@@ -24,16 +24,7 @@
     <% } else if (page === 'team') { %>
         <title>Fly High | Our Team</title>
     <% } %>
-
-    <!-- ————————————————————————— 首頁 ————————————————————————— -->
-    <% if (page === 'index') { %>
-        <link rel="shortcut icon" href="flyHigh.ico" type="image/x-icon">
-        <link rel="stylesheet" href="library/icomoon-feather/style.css">
-        <link rel="stylesheet" href="css/main.min.css">
-    <!-- ————————————————————————— 分頁 ————————————————————————— -->
-    <% } else { %>
-        <link rel="shortcut icon" href="../flyHigh.ico" type="image/x-icon">
-        <link rel="stylesheet" href="../library/icomoon-feather/style.css">
-        <link rel="stylesheet" href="../css/main.min.css">
-    <% } %>
+    <link rel="shortcut icon" href="{{basePath}}flyHigh.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{{basePath}}library/icomoon-feather/style.css">
+    <link rel="stylesheet" href="{{basePath}}css/main.min.css">
 </head>

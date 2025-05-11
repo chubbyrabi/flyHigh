@@ -3,12 +3,14 @@
 $header-h: 2rem
 
 header
-	position: sticky
+	position: fixed
 	top: 0
+	left: 0
+	width: 100vw
+	padding: $page-padding
 	display: flex
 	align-items: center
 	gap: 1rem
-	padding: $page-padding
 // —————————————————————————————————————————————————— header-logo
 .header-logo
 	margin-right: auto
@@ -48,12 +50,19 @@ header
 			border-radius: 1rem
 			&:nth-of-type(1)
 				top: .4rem
-				// top: calc( (2rem - (.2rem * 2) ) / 3)
 			&:nth-of-type(2)
 				top: calc(100% - 0.4rem - 0.2rem)
-				// top: calc(((2rem - (.2rem * 2) ) / 3 * 2) + .2rem)
 	.hb-menu
-		display: none
+		display: block
+		position: fixed
+		width: 100vw
+		height: 100vh
+		top: 0
+		background-color: $clr-black
+		.menu-list
+			li 
+				+fontStyle(14)
+				color: $clr-white
 
 // —————————————————————————————————————————————————— home header-nav
 .page-home
@@ -88,7 +97,7 @@ header
 				&::before
 					left: -6.5px
 					background-color: $clr-white
-					border: 3px solid #111
+					border: 3px solid $clr-black
 					// outline: 1px solid $clr-gray-4
 					outline: 1px solid $clr-gray-6
 
@@ -131,3 +140,26 @@ body:not(.page-home)
 		left: 0
 		height: 0
 		transition: opacity .5s .1s, left .5s .1s, height .5s
+
+// —————————————————————————————————————————————————— active 動畫
+.header-hb
+	.hb-btn
+		span
+			transition: top .3s, transform .3s
+	.hb-menu
+		left: -100vw
+		opacity: 0
+		transition: opacity .3s, left 0s .3s
+.header-hb.active
+	.hb-btn
+		span
+			&:nth-of-type(1)
+				top: 50%
+				transform: translateY(-50%) rotate(45deg)
+			&:nth-of-type(2)
+				top: 50%
+				transform: translateY(-50%) rotate(-45deg)
+	.hb-menu
+		left: 0
+		opacity: 1
+		transition: opacity .3s, left 0s

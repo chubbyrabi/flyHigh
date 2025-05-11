@@ -26,34 +26,65 @@ function updateCustomCSSVars() {
 window.addEventListener('DOMContentLoaded', updateCustomCSSVars);
 window.addEventListener('resize', updateCustomCSSVars);
 
+// —————————————————————————————————————————————————— header-hb
+$('.hb-btn').on('click', function () {
+    $('.header-hb').toggleClass('active');
+    $('body').toggleClass('modal-open');
+})
+
+// —————————————————————————————————————————————————— basePath
+// const basePath = location.pathname.includes('/flyHigh/') ? '/flyHigh/' : '/dist/';
+
 // —————————————————————————————————————————————————— breadcrumb
 function breadcrumb() {
     const breadcrumbList = document.querySelector('.nav-breadcrumb ol');
-    if (!breadcrumbList) return; // 沒有麵包屑容器就跳出
+    if (!breadcrumbList) return;
 
-    const pathArray = location.pathname.split('/').filter(Boolean);
-    let path = '';
+    breadcrumbList.innerHTML = `<li><a href="/dist/index.html">Top</a></li>`;
 
-    // 預設 Top
-    breadcrumbList.innerHTML = `<li><a href="/index.html">Top</a></li>`;
+    const pathArray = location.pathname
+        .replace(/^\/dist\//, '') // ✅ 移除 /dist/ 開頭
+        .split('/')
+        .filter(Boolean);
 
-    // 過濾 dist 層級
-    const filteredPathArray = pathArray.filter(segment => segment !== 'dist');
+    const folderMap = {
+        'html-pages': '',
+        'html-news': 'News',
+    };
 
     const pageNameMap = {
-        'page-about.html': 'About Us',
+        'page-about.html': 'About',
         'page-news.html': 'News',
         'page-team.html': 'Our Team',
         'page-contact.html': 'Contact Us',
+        // 個別新聞不寫
     };
 
-    filteredPathArray.forEach((segment, index) => {
-        path += '/' + segment;
-        const isLast = index === filteredPathArray.length - 1;
-        let displayText = decodeURIComponent(segment.replace(/[-_]/g, ' '));
+    let path = '';
 
-        if (pageNameMap[segment]) {
-            displayText = pageNameMap[segment];
+    pathArray.forEach((segment, index) => {
+        const isLast = index === pathArray.length - 1;
+
+        if (folderMap[segment] !== undefined) {
+            path += '/' + segment;
+            const li = document.createElement('li');
+            const label = folderMap[segment];
+            if (label) {
+                li.innerHTML = `<a href="${path}/">${label}</a>`;
+                breadcrumbList.appendChild(li);
+            }
+            return;
+        }
+
+        path += '/' + segment;
+
+        let displayText = pageNameMap[segment];
+        if (!displayText) {
+            // 如果沒有對應名稱，就自動格式化檔名
+            displayText = segment
+                .replace(/\.[^/.]+$/, '') // 去副檔名
+                .replace(/[-_]/g, ' ')    // 換空格
+                .replace(/\b\w/g, c => c.toUpperCase()); // 每字首大寫
         }
 
         const li = document.createElement('li');

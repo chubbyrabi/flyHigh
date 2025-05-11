@@ -8,11 +8,12 @@ const path = require('path');
 const plumber = require('gulp-plumber');
 const prettify = require('gulp-prettify');
 const rename = require('gulp-rename');
+const replace = require('gulp-replace');
 const sass = require('gulp-sass')(require('sass'));
 const terser = require('gulp-terser');
 
 // html
-function buildHtml(isMinify = true) {
+function buildHtml(isMinify = true, basePath = '/dist/') {
     return function () {
         return gulp.src(['src/**/*.ejs', '!src/html/**'], { base: 'src' })
             .pipe(plumber())
@@ -24,15 +25,14 @@ function buildHtml(isMinify = true) {
                     }
                 }
             }))
-            .pipe(rename({ extname: '.html' }))			// 改檔名
-            .pipe(htmlmin({ removeComments: true }))	// 移除註解
+            .pipe(replace('{{basePath}}', basePath))
+            .pipe(rename({ extname: '.html' }))
+            .pipe(htmlmin({ removeComments: true }))
             .pipe(isMinify
-				// 壓縮版
                 ? htmlmin({
                     collapseWhitespace: true,
                     removeAttributeQuotes: true
                 })
-				// 不壓縮
                 : prettify({
                     indent_size: 4,
                     wrap_attributes: 'auto',
@@ -42,11 +42,10 @@ function buildHtml(isMinify = true) {
             .pipe(gulp.dest('dist'));
     };
 }
-
-// 壓縮版
-gulp.task('html:min', buildHtml(true));
-// 不壓縮
-gulp.task('html:dev', buildHtml(false));
+// 不壓縮 本地開發用
+gulp.task('html:dev', buildHtml(false, '/dist/'));
+// 壓縮版 部署到 GitHub Pages
+gulp.task('html:min', buildHtml(true, '/flyHigh/'));
 
 // Sass 編譯
 gulp.task('sass', function () {
