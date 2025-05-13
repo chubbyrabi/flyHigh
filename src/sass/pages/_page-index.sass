@@ -1,0 +1,45 @@
+@use '../base/global' as *;
+
+section
+    margin: auto
+    text-align: center
+.section-tit
+    +fontStyle(48)
+    color: $clr-white
+.section-desc
+    p
+        +fontStyle(12)
+        line-height: 2
+        color: $clr-white
+
+.section-about
+    > *
+        margin: 0 auto $page-padding
+        width: $section-width
+    .btn
+        width: auto
+    .section-desc
+        font-size: 0
+        p
+            display: inline-block
+            width: 50%
+            padding: 0 $page-padding
+            // margin: $page-padding 0
+            &:nth-of-type(1)
+                text-align: right
+                border-right: 1px solid $clr-white
+            &:nth-of-type(2)
+                text-align: left
+    .section-cards
+        font-size: 0
+        .card
+            display: inline-block
+            vertical-align: top
+            width: calc((100% - #{$page-padding}) / 3)
+            &:not(:last-child)
+                margin-right: calc(#{$page-padding} / 2)
+                
+
+// .section-team
+// .section-news
+// .section-contact

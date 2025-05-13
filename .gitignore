@@ -1,2 +1,14 @@
 node_modules/
 dist/
+
+# npm list --depth=0
+# npm uninstall gulp-cheerio
+# npm uninstall gulp-imagemin
+# npm install gulp-gzip --save-dev
+# npm install gulp-imagemin --save-dev
+# npm install gulp-image-size --save-dev
+
+自動修復非破壞性漏洞
+# npm audit fix
+檢查破壞性變更
+# npm audit fix --force

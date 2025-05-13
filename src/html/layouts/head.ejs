@@ -25,6 +25,22 @@
         <title>Fly High | Our Team</title>
     <% } %>
     <link rel="shortcut icon" href="{{basePath}}flyHigh.ico" type="image/x-icon">
-    <link rel="stylesheet" href="{{basePath}}library/icomoon-feather/style.css">
-    <link rel="stylesheet" href="{{basePath}}css/main.min.css">
+    <!-- <link rel="stylesheet" href="{{basePath}}library/icomoon-feather/style.css"> -->
+    <!-- <link rel="stylesheet" href="{{basePath}}css/main.min.css"> -->
+
+    <!-- 預先載入樣式 -->
+    <link rel="preload" href="{{basePath}}library/icomoon-feather/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{basePath}}library/icomoon-feather/style.css"></noscript>
+    <link rel="preload" href="{{basePath}}css/main.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{basePath}}css/main.min.css"></noscript>
+    
+    <!-- 提前下載資源 -->
+    <link rel="preload" href="{{basePath}}library/jquery-3.7.1.min.js" as="script">
+    <link rel="preload" href="{{basePath}}library/lenis.min.js" as="script">
+    <link rel="preload" href="{{basePath}}js/common.min.js" as="script">
+    <!-- 延後執行，不阻塞渲染 -->
+    <script src="{{basePath}}library/jquery-3.7.1.min.js" defer></script>
+    <script src="{{basePath}}library/lenis.min.js" defer></script>
+    <script src="{{basePath}}js/common.min.js" defer></script>
+
 </head>

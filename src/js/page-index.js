@@ -1,16 +1,33 @@
 $(function () {
     
     // —————————————————————————————————————————————————— 滾動監聽
-    function debounce(func, wait = 100) {
-        let timeout;
-        return function (...args) {
-            clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(this, args), wait);
-        };
+    // function debounce(func, wait = 100) {
+    //     let timeout;
+    //     return function (...args) {
+    //         clearTimeout(timeout);
+    //         timeout = setTimeout(() => func.apply(this, args), wait);
+    //     };
+    // }
+    // $(window).on('scroll', debounce(function () {
+    //     if (!isScrollingByClick) handleScrollAndUpdateNav();
+    // }, 100));
+
+    // —————————————————————————————————————————————————— 滾動監聽 lenis
+    const lenis = new Lenis({
+        smooth: true,
+        direction: 'vertical',
+        gestureDirection: 'vertical',
+        smoothTouch: false,
+    })
+    function raf(time) {
+        lenis.raf(time)
+        requestAnimationFrame(raf)
     }
-    $(window).on('scroll', debounce(function () {
+    requestAnimationFrame(raf)
+
+    lenis.on('scroll', () => {
         if (!isScrollingByClick) handleScrollAndUpdateNav();
-    }, 100));
+    });
 
     // —————————————————————————————————————————————————— 計算元素 top (有定位或旋轉時)
     // let docH =   $(document).height();       // 整份文件高度
@@ -48,8 +65,10 @@ $(function () {
 
     // —————————————————————————————————————————————————— 首頁錨點 Scroll
     function handleScrollAndUpdateNav() {
-        const scrTop = $(window).scrollTop();
-        const winH = $(window).height();
+        // const scrTop = $(window).scrollTop();
+        // const winH = $(window).height();
+        const scrTop = window.scrollY;      // 配合 Lenis 改用 scrollY 較標準
+        const winH = window.innerHeight;
         let currentIndex = -1;
 
         // 更新 nav active
@@ -99,12 +118,26 @@ $(function () {
             }
 
             // 停止目前所有動畫再執行新的動畫
-            $('html, body').stop(true).animate({
-                scrollTop: target.offset().top
-            }, 600, function () {
-                isScrollingByClick = false;
+            // $('html, body').stop(true).animate({
+            //     scrollTop: target.offset().top
+            // }, 600, function () {
+            //     isScrollingByClick = false;
+            // });
+
+            // 改用 Lenis 滾動
+            lenis.scrollTo(target[0], {
+                offset: 0,
+                duration: 1.2, // 動畫秒數
+                easing: (t) => 1 - Math.pow(1 - t, 4) // 緩動曲線 (可改)
             });
+
+            // 這段可選，因為無 callback，可用 setTimeout 模擬
+            setTimeout(() => {
+                isScrollingByClick = false;
+            }, 1200);
         }
     });
-    // ——————————————————————————————————————————————————
+
+    // —————————————————————————————————————————————————— 
+
 })

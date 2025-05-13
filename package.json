@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "gulp",
-    "dev": "gulp sass html:dev images js library",
-    "build": "gulp sass html:min images js library",
-    "deploy": "gh-pages -d dist"
+    "start-server": "node server.js",
+    "start-gulp": "gulp",
+    "dev-build": "gulp sass html:dev images favicon js library",
+    "prod-build": "gulp sass html:min images favicon js library",
+    "prod-build-gz": "gulp sass html:gz images favicon js library compress",
+    "deploy-gh-pages": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,7 @@
     "gulp-clean-css": "^4.3.0",
     "gulp-ejs": "^5.1.0",
     "gulp-file-include": "^2.3.0",
+    "gulp-gzip": "^1.4.2",
     "gulp-htmlmin": "^5.0.1",
     "gulp-path": "^4.0.0",
     "gulp-plumber": "^1.2.1",
@@ -33,9 +36,13 @@
     "gulp-replace": "^1.1.4",
     "gulp-sass": "^6.0.1",
     "gulp-terser": "^2.1.0",
+    "image-size": "^2.0.2",
     "sass": "^1.87.0"
   },
   "dependencies": {
-    "gh-pages": "^6.3.0"
+    "compression": "^1.8.0",
+    "express": "^5.1.0",
+    "gh-pages": "^6.3.0",
+    "serve-static": "^2.2.0"
   }
 }

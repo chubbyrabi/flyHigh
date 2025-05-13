@@ -1,4 +1,22 @@
-// 基礎單位設置
+// $(document).ready(function() {
+//   $('img').attr('loading', 'lazy'); // 為所有圖片加上 lazy loading
+// });
+
+// —————————————————————————————————————————————————— 慣性滾動
+// import Lenis from '@studio-freight/lenis'
+
+// const lenis = new Lenis({
+//     smooth: true
+// })
+
+// function raf(time) {
+//     lenis.raf(time)
+//     requestAnimationFrame(raf)
+// }
+
+// requestAnimationFrame(raf)
+
+// —————————————————————————————————————————————————— 基礎單位設置
 function updateCustomCSSVars() {
 	// 計算捲軸寬度
 	const scrollDiv = document.createElement('div');
@@ -26,14 +44,28 @@ function updateCustomCSSVars() {
 window.addEventListener('DOMContentLoaded', updateCustomCSSVars);
 window.addEventListener('resize', updateCustomCSSVars);
 
+// —————————————————————————————————————————————————— JS 動態補圖尺寸
+// 圖片元素沒有明確的 width 和 height > google 會扣分
+// document.querySelectorAll('img').forEach(img => {
+    
+//     // 等待圖片加載完成
+//     img.onload = () => {
+//         if (!img.hasAttribute('width') && img.naturalWidth > 0) {
+//             img.setAttribute('width', img.naturalWidth);
+//             img.setAttribute('height', img.naturalHeight);
+//         }
+//     };
+
+//     if (img.complete) {
+//         img.onload();
+//     }
+// });
+
 // —————————————————————————————————————————————————— header-hb
 $('.hb-btn').on('click', function () {
     $('.header-hb').toggleClass('active');
     $('body').toggleClass('modal-open');
 })
-
-// —————————————————————————————————————————————————— basePath
-// const basePath = location.pathname.includes('/flyHigh/') ? '/flyHigh/' : '/dist/';
 
 // —————————————————————————————————————————————————— breadcrumb
 function breadcrumb() {
@@ -57,7 +89,6 @@ function breadcrumb() {
         'page-news.html': 'News',
         'page-team.html': 'Our Team',
         'page-contact.html': 'Contact Us',
-        // 個別新聞不寫
     };
 
     let path = '';
