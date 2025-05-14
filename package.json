@@ -5,10 +5,12 @@
   "scripts": {
     "start-server": "node server.js",
     "start-gulp": "gulp",
-    "dev-build": "gulp sass html:dev images favicon js library",
-    "prod-build": "gulp sass html:min images favicon js library",
-    "prod-build-gz": "gulp sass html:gz images favicon js library compress",
-    "deploy-gh-pages": "gh-pages -d dist"
+    "dev-build": "gulp sass html:dist images favicon js library",
+    "prod-build-github": "gulp sass html:flyHigh images favicon js library",
+    "prod-build-gzip": "gulp sass html:gzip images favicon js library compress",
+    "deploy-github": "gh-pages -d dist",
+    "deploy-netlify": "dev-netlify -d dist",
+    "deploy-vercel": "dev-vercel -d dist"
   },
   "repository": {
     "type": "git",

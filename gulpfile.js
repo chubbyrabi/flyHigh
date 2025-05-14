@@ -78,12 +78,12 @@ function buildHtml(isMinify = true, basePath = '/dist/') {
     };
 }
 
-// 不壓縮 本地開發用
-gulp.task('html:dev', buildHtml(false, '/dist/'));
-// 壓縮版 本地開發用
-gulp.task('html:gz', buildHtml(true, '/'));
-// 壓縮版 部署到 GitHub Pages
-gulp.task('html:min', buildHtml(true, '/flyHigh/'));
+// 不壓縮 Live Server
+gulp.task('html:dist', buildHtml(false, '/dist/'));
+// 壓縮版 GitHub Pages
+gulp.task('html:flyHigh', buildHtml(true, '/flyHigh/'));
+// 壓縮版 localhost Netlify vercel 
+gulp.task('html:gzip', buildHtml(true, '/'));
 
 // Sass 編譯壓縮
 gulp.task('sass', () => {
@@ -105,12 +105,18 @@ gulp.task('js', () => {
         .pipe(gulp.dest('dist/js'));
 });
 
-// 複製任務共通邏輯
-function copyTask(src, dest) {
-    return () => gulp.src(src).pipe(plumber()).pipe(gulp.dest(dest));
-}
-gulp.task('library', copyTask('src/library/**/*', 'dist/library'));
+// 複製 library
+gulp.task('library', () => {
+    return gulp.src('src/library/**/*')
+        .pipe(plumber())
+        .pipe(gulp.dest('dist/library'));
+});
 
+// 複製任務共通邏輯
+// function copyTask(src, dest) {
+//     return () => gulp.src(src).pipe(plumber()).pipe(gulp.dest(dest));
+// }
+// gulp.task('library', copyTask('src/library/**/*', 'dist/library'));
 
 // 複製 ico
 gulp.task('favicon', () => {
@@ -134,14 +140,14 @@ gulp.task('images', () => {
 // 開發監看
 gulp.task('watch', () => {
     gulp.watch('src/sass/**/*.sass', gulp.series('sass'));
-    gulp.watch('src/**/*.ejs', gulp.series('html:dev'));
+    gulp.watch('src/**/*.ejs', gulp.series('html:dist'));
     gulp.watch('src/js/**/*.js', gulp.series('js'));
     gulp.watch('src/library/**/*', gulp.series('library'));
 });
 
-// 開發 不壓縮
-gulp.task('start-gulp', gulp.series('sass', 'html:dev', 'js', 'images', 'favicon', 'library', 'watch'));
-// 生產 壓縮
-gulp.task('prod-build', gulp.series('sass', 'html:min', 'js', 'images', 'favicon', 'library'));
-// 生產 壓縮 GZ
-gulp.task('prod-build-gz', gulp.series('sass', 'html:gz', 'js', 'images', 'favicon', 'library', 'compress'));
+// 本地 dist 不壓縮
+gulp.task('start-gulp', gulp.series('sass', 'html:dist', 'js', 'images', 'favicon', 'library', 'watch'));
+// 部屬 github
+gulp.task('prod-build-github', gulp.series('sass', 'html:flyHigh', 'js', 'images', 'favicon', 'library'));
+// 部屬 localhost Netlify vercel 
+gulp.task('prod-build-gzip', gulp.series('sass', 'html:gzip', 'js', 'images', 'favicon', 'library', 'compress'));
