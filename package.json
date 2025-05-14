@@ -8,9 +8,9 @@
     "dev-build": "gulp sass html:dist images favicon js library",
     "prod-build-github": "gulp sass html:flyHigh images favicon js library",
     "prod-build-gzip": "gulp sass html:gzip images favicon js library compress",
-    "deploy-github": "gh-pages -d dist",
-    "deploy-netlify": "dev-netlify -d dist",
-    "deploy-vercel": "dev-vercel -d dist"
+    "deploy-github": "gh-pages -d dist -b gh-pages",
+    "deploy-netlify": "gh-pages -d dist -b dev-netlify",
+    "deploy-vercel": "gh-pages -d dist -b dev-vercel"
   },
   "repository": {
     "type": "git",
