@@ -11,19 +11,23 @@ header
 	display: flex
 	align-items: center
 	gap: 1rem
+	pointer-events: none
 // —————————————————————————————————————————————————— header-logo
 .header-logo
 	margin-right: auto
 	height: $header-h
 	font-size: 0
+	pointer-events: auto
 	a, svg
 		height: 100%
+	svg
 		fill: $clr-white
 		transition: fill .3s
 		&:hover
 			fill: $clr-main
 // —————————————————————————————————————————————————— header-nav
 .header-nav
+	pointer-events: auto
 	.nav-ul
 		li
 			cursor: pointer
@@ -35,6 +39,7 @@ header
 			color: $clr-white
 // —————————————————————————————————————————————————— header-hb
 .header-hb
+	pointer-events: auto
 	width: $header-h
 	height: $header-h
 	.hb-btn

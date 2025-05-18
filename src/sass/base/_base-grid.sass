@@ -1,0 +1,24 @@
+$grid-columns: 12
+$grid-gap: 1.5rem
+
+.row
+	position: relative
+	display: flex
+	flex-wrap: wrap
+	gap: $grid-gap
+
+[class^="col-"]
+	padding-left: calc($grid-gap / 2)
+	padding-right: calc($grid-gap / 2)
+	box-sizing: border-box
+
+@for $i from 1 through $grid-columns
+	.col-#{$i}
+		// 物件 個數
+		$item-num: calc(#{$grid-columns} / #{$i})
+		// 間距 總寬度
+		$gap-w: calc(( #{$item-num} - 1) * #{$grid-gap})
+		// 物件 總寬度
+		$item-w: calc( 100% - #{$gap-w})
+		// 物件 寬度
+		width: calc( #{$item-w} / #{$item-num} )

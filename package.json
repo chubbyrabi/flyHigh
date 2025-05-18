@@ -4,10 +4,9 @@
   "main": "index.js",
   "scripts": {
     "start-server": "node server.js",
-    "start-gulp": "gulp",
-    "dev-build": "gulp sass html:dist images favicon js library",
-    "prod-build-github": "gulp sass html:flyHigh images favicon js library",
-    "prod-build-gzip": "gulp sass html:gzip images favicon js library compress",
+    "build-dev": "gulp build-dev",
+    "build-prod-github": "gulp build-prod-github",
+    "build-prod-gzip": "gulp build-prod-gzip",
     "deploy-github": "gh-pages -d dist -b gh-pages",
     "deploy-netlify": "gh-pages -d dist -b dev-netlify",
     "deploy-vercel": "gh-pages -d dist -b dev-vercel"

@@ -12,3 +12,14 @@ dist/
 # npm audit fix
 檢查破壞性變更
 # npm audit fix --force
+
+# git checkout -b dev-netlify
+# git checkout -b dev-vercel
+# git checkout -b dev-gzip
+
+# git add dist
+# git commit -m "Netlify 部署用版本"
+# git push origin dev-vercel
+
+# git branch -D dev-netlify
+# git push origin --delete dev-netlify

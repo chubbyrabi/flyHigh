@@ -1,0 +1,29 @@
+@use '../base/global' as *;
+
+.mask
+    pointer-events: none
+    position: fixed
+    top: 0
+    left: 0
+    width: 100vw
+    height: 100vh
+    z-index: 9999
+    background: transparent
+    transition: background .3s
+    &.loading
+        background: rgba(#000, .3)
+        +blur
+        .loader
+            display: inline-block
+    .loader
+        display: none
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        margin: 0 auto 1em
+        padding: 1em
+        text-align: center
+        // svg
+        //     width: 5rem
+        //     height: 5rem

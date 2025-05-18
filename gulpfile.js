@@ -40,23 +40,23 @@ function buildHtml(isMinify = true, basePath = '/dist/') {
             .pipe(rename({ extname: '.html' }))
 
             // 為圖片添加寬高屬性並加入 lazy loading
-            .pipe(replace(/<img[^>]+src=["']([^"']+)\.(jpg|jpeg|png|gif|svg|webp)["'][^>]*>/g, (match, imageUrl, ext) => {
-                try {
-                    const cleanImageUrl = imageUrl.replace(/^\/?(dist\/)?img\//, '');
-                    const imgPath = path.join(__dirname, 'src', 'img', `${cleanImageUrl}.${ext}`);
-                    console.log(`正在處理圖片: ${imgPath}`);
-                    if (!fs.existsSync(imgPath)) {
-                        console.error(`圖片不存在: ${imgPath}`);
-                        return match;
-                    }
-                    const dimensions = sizeOf(fs.readFileSync(imgPath));
-                    // 為圖片添加寬高屬性並加入 lazy loading
-                    return match.replace('<img', `<img width="${dimensions.width}" height="${dimensions.height}" loading="lazy"`);
-                } catch (err) {
-                    console.error(`圖片處理錯誤: ${imageUrl}`, err);
-                    return match;
-                }
-            }))
+            // .pipe(replace(/<img[^>]+src=["']([^"']+)\.(jpg|jpeg|png|gif|svg|webp)["'][^>]*>/g, (match, imageUrl, ext) => {
+            //     try {
+            //         const cleanImageUrl = imageUrl.replace(/^\/?(dist\/)?img\//, '');
+            //         const imgPath = path.join(__dirname, 'src', 'img', `${cleanImageUrl}.${ext}`);
+            //         console.log(`正在處理圖片: ${imgPath}`);
+            //         if (!fs.existsSync(imgPath)) {
+            //             console.error(`圖片不存在: ${imgPath}`);
+            //             return match;
+            //         }
+            //         const dimensions = sizeOf(fs.readFileSync(imgPath));
+            //         // 為圖片添加寬高屬性並加入 lazy loading
+            //         return match.replace('<img', `<img width="${dimensions.width}" height="${dimensions.height}" loading="lazy"`);
+            //     } catch (err) {
+            //         console.error(`圖片處理錯誤: ${imageUrl}`, err);
+            //         return match;
+            //     }
+            // }))
 
             // 加上 CSS/JS/圖片版本號
             .pipe(replace(/(href|src)=["']([^"']+\.(css|js|png|jpg|jpeg|gif|svg|webp))["']/g, (match, attr, url) => {
@@ -145,9 +145,16 @@ gulp.task('watch', () => {
     gulp.watch('src/library/**/*', gulp.series('library'));
 });
 
-// 本地 dist 不壓縮
-gulp.task('start-gulp', gulp.series('sass', 'html:dist', 'js', 'images', 'favicon', 'library', 'watch'));
-// 部屬 github
-gulp.task('prod-build-github', gulp.series('sass', 'html:flyHigh', 'js', 'images', 'favicon', 'library'));
+
+
+// 本地開發 dist 不壓縮
+gulp.task('build-dev', gulp.series('sass', 'html:dist', 'js', 'images', 'favicon', 'library', 'watch'));
+
+// 部屬 Github
+gulp.task('build-prod-github', gulp.series('sass', 'html:flyHigh', 'js', 'images', 'favicon', 'library'));
+
 // 部屬 localhost Netlify vercel 
-gulp.task('prod-build-gzip', gulp.series('sass', 'html:gzip', 'js', 'images', 'favicon', 'library', 'compress'));
+gulp.task('build-prod-gzip', gulp.series('sass', 'html:gzip', 'js', 'images', 'favicon', 'library', 'compress'));
+
+// 預設任務
+gulp.task('default', gulp.series('build-dev'));

@@ -16,9 +16,24 @@
 
 // requestAnimationFrame(raf)
 
+// —————————————————————————————————————————————————— 等頁面完全載入後，移除 loading
+const loadingStart = performance.now();
+
+window.addEventListener('load', () => {
+    const loadingEnd = performance.now();
+    const timePassed = loadingEnd - loadingStart;
+    const minDisplayTime = 500;
+
+    const delay = timePassed < minDisplayTime ? minDisplayTime - timePassed : 0;
+
+    setTimeout(() => {
+        document.querySelector('body')?.classList.remove('hidden');
+        document.querySelector('.mask')?.classList.remove('loading');
+    }, delay);
+});
+
 // —————————————————————————————————————————————————— 基礎單位設置
 function updateCustomCSSVars() {
-	// 計算捲軸寬度
 	const scrollDiv = document.createElement('div');
 	scrollDiv.style.visibility = 'hidden';
 	scrollDiv.style.overflow = 'scroll';
@@ -31,18 +46,27 @@ function updateCustomCSSVars() {
 	document.body.removeChild(scrollDiv);
 	document.documentElement.style.setProperty('--scrollbar', `${scrollbarWidth}px`);
 
-	// 設定 font-size 對應的 px（1rem）
-	const fz = parseFloat(getComputedStyle(document.documentElement).fontSize);
-	document.documentElement.style.setProperty('--fz', `${fz}px`);
+	// 抓 font-size 與 vh，延遲以防頁面剛進來還沒重繪
+	setTimeout(() => {
+		const fz = parseFloat(getComputedStyle(document.documentElement).fontSize);
+		document.documentElement.style.setProperty('--fz', `${fz}px`);
 
-	// 設定 1vh 的實際像素值
-	const vh = window.innerHeight * 0.01;
-	document.documentElement.style.setProperty('--vh', `${vh}px`);
+		const vh = window.innerHeight * 0.01;
+		document.documentElement.style.setProperty('--vh', `${vh}px`);
+	}, 50); // 你也可以試試 0、16、100，看哪個表現最穩定
 }
 
-// 初始化 + 監聽 resize
-window.addEventListener('DOMContentLoaded', updateCustomCSSVars);
+// 監聽 load（含圖片資源）與 pageshow（快取返回）
+window.addEventListener('load', updateCustomCSSVars);
 window.addEventListener('resize', updateCustomCSSVars);
+window.addEventListener('pageshow', updateCustomCSSVars);
+
+// —————————————————————————————————————————————————— JS 移除拖曳預覽圖
+document.querySelectorAll('img').forEach(img => {
+  img.addEventListener('dragstart', function (e) {
+    e.preventDefault();
+  });
+});
 
 // —————————————————————————————————————————————————— JS 動態補圖尺寸
 // 圖片元素沒有明確的 width 和 height > google 會扣分

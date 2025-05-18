@@ -2,7 +2,7 @@
 <html lang="en">
 <%- include('../html/layouts/head', { page: 'team' }) %>
 
-<body class="page-team">
+<body class="page-team hidden">
     <%- include('../html/layouts/header', { page: 'team' }) %>
     <%- include('../html/components/nav-breadcrumb') %>
     <main>
@@ -11,9 +11,10 @@
         </section>
     </main>
     <%- include('../html/layouts/footer') %>
+    <%- include('../html/components/mask') %>
 
-    <script type="text/javascript" src="{{basePath}}library/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="{{basePath}}js/common.min.js"></script>
+    <!-- <script type="text/javascript" src="{{basePath}}library/jquery-3.7.1.min.js"></script> -->
+    <!-- <script type="text/javascript" src="{{basePath}}js/common.min.js"></script> -->
     <script type="text/javascript" src="{{basePath}}js/page-teams.min.js"></script>
 </body>
 </html>
