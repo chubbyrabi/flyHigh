@@ -18,6 +18,9 @@ $(function () {
         direction: 'vertical',
         gestureDirection: 'vertical',
         smoothTouch: false,
+        lerp: 0.08,               // 滾動的慣性，數值越低滑行時間越長
+        wheelMultiplier: 1.2,     // 滾輪速度倍數，預設是 1
+        // touchMultiplier: 2.0      // 觸控拖曳倍數，預設是 1
     })
     function raf(time) {
         lenis.raf(time)
@@ -54,7 +57,8 @@ $(function () {
     let isScrollingByClick = false;
     const links_home = $('.page-home .nav-ul a');
     const section_home = $('main section');
-    const totalNum = links_home.length.toString().padStart(2, '0');
+    // const totalNum = links_home.length.toString().padStart(2, '0');
+    const totalNum = (links_home.length + 1).toString().padStart(2, '0');
 
     function updateNavActive(index) {
         links_home.parent().removeClass('active').eq(index).addClass('active');

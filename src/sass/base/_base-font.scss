@@ -66,7 +66,7 @@ $fontSizes: (
 
 // 字重
 $fontWeights: (
-	12: 400,
+	12: 300,
 	14: 400,
 	16: 400,
 	18: 500,
@@ -79,16 +79,27 @@ $fontWeights: (
 
 // 行高
 $lineHeights: (
-	12: 1.4,
-	14: 1.4,
-	16: 1.5,
-	18: 1.5,
-	20: 1.5,
-	24: 1.4,
-	32: 1.2,
-	40: 1.1,
-	48: 1.1
+	12: 2.0,
+	14: 2.0,
+	16: 2.2,
+	18: 2.2,
+	20: 2.2,
+	24: 2.2,
+	32: 1.0,
+	40: 1.0,
+	48: 1.0
 );
+// $lineHeights: (
+// 	12: 1.4,
+// 	14: 1.4,
+// 	16: 1.5,
+// 	18: 1.5,
+// 	20: 1.5,
+// 	24: 1.4,
+// 	32: 1.2,
+// 	40: 1.1,
+// 	48: 1.1
+// );
 
 // 字距
 $letterSpacings: (
@@ -107,5 +118,6 @@ $letterSpacings: (
 	font-size: map.get($fontSizes, $size);
 	font-weight: map.get($fontWeights, $size);
 	line-height: map.get($lineHeights, $size);
-	letter-spacing: map.get($letterSpacings, $size);
+	// letter-spacing: map.get($letterSpacings, $size);
+	letter-spacing: 0.05rem
 }

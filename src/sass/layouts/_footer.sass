@@ -1,0 +1,42 @@
+@use '../base/global' as *;
+
+.site-footer
+    // padding: $page-padding 0
+    background-color: $clr-gray-2
+    .footer-content,
+    .footer-bottom
+        margin: 0 auto
+        width: $section-width
+        padding: $page-padding 0
+    .footer-content
+        display: grid
+        grid-template-columns: 1fr 2fr 1fr
+    .logo
+        height: 3rem
+    .link-title
+        +fontStyle(16)
+        color: $clr-white
+        font-weight: bold
+    .link-column
+        // display: inline-block
+        // vertical-align: top
+        // ul
+        li
+            display: block
+        // grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr)
+        // grid-template-columns: 1fr max-content 1fr
+        // grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr)
+        // grid-template-columns: 1fr minmax(0, auto) 1fr
+    address
+        font-style: initial
+    .footer-bottom
+        text-align: center
+        border-top: .7px solid $clr-gray-8
+        .language-switcher,
+        .copyright
+            display: inline-block
+            vertical-align: top
+        .copyright
+            margin-left: $padding
+        .txt
+            color: $clr-gray-8

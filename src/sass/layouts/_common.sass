@@ -1,0 +1,23 @@
+@use '../base/global' as *;
+
+// z-index
+header
+    z-index: 5
+    .hb-btn
+        z-index: 1
+    // .hb-menu
+
+.txt
+    +fontStyle(12)
+    color: $clr-white
+
+.visually-hidden
+    position: absolute !important
+    width: 1px !important
+    height: 1px !important
+    margin: -1px !important
+    padding: 0 !important
+    overflow: hidden !important
+    clip: rect(0, 0, 0, 0) !important
+    white-space: nowrap !important
+    border: 0 !important

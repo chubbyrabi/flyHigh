@@ -3,18 +3,6 @@
 // });
 
 // —————————————————————————————————————————————————— 慣性滾動
-// import Lenis from '@studio-freight/lenis'
-
-// const lenis = new Lenis({
-//     smooth: true
-// })
-
-// function raf(time) {
-//     lenis.raf(time)
-//     requestAnimationFrame(raf)
-// }
-
-// requestAnimationFrame(raf)
 
 // —————————————————————————————————————————————————— 等頁面完全載入後，移除 loading
 const loadingStart = performance.now();

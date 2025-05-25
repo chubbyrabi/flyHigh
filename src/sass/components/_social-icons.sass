@@ -1,0 +1,14 @@
+@use '../base/global' as *;
+
+.social-icons
+    a
+        &:not(:last-child)
+            margin-right: $padding
+    i
+        display: block
+        +fontStyle(20)
+        color: $clr-white
+        &:hover
+            transform: scale(1.2)
+            color: $clr-main
+            transition: .2s
