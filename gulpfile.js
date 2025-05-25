@@ -15,8 +15,19 @@ const terser = require('gulp-terser');
 const sizeOf = require('image-size').default;
 const timestamp = Date.now();
 const gzip = require('gulp-gzip');
+const brotli = require('gulp-brotli');
 
-// 啟用文字壓縮
+// 啟用 brotli 壓縮
+gulp.task('compress-brotli', () => {
+  return gulp.src(['dist/**/*.{html,css,js}'])
+    .pipe(brotli.compress({
+      extension: 'br',
+      quality: 11
+    }))
+    .pipe(gulp.dest('dist'));
+});
+
+// 啟用 gzip 壓縮
 gulp.task('compress', function () {
   return gulp.src(['dist/**/*.html', 'dist/**/*.css', 'dist/**/*.js'])
     .pipe(gzip())
@@ -40,29 +51,29 @@ function buildHtml(isMinify = true, basePath = '/dist/') {
             .pipe(rename({ extname: '.html' }))
 
             // 為圖片添加寬高屬性並加入 lazy loading
-            // .pipe(replace(/<img[^>]+src=["']([^"']+)\.(jpg|jpeg|png|gif|svg|webp)["'][^>]*>/g, (match, imageUrl, ext) => {
-            //     try {
-            //         const cleanImageUrl = imageUrl.replace(/^\/?(dist\/)?img\//, '');
-            //         const imgPath = path.join(__dirname, 'src', 'img', `${cleanImageUrl}.${ext}`);
-            //         console.log(`正在處理圖片: ${imgPath}`);
-            //         if (!fs.existsSync(imgPath)) {
-            //             console.error(`圖片不存在: ${imgPath}`);
-            //             return match;
-            //         }
-            //         const dimensions = sizeOf(fs.readFileSync(imgPath));
-            //         // 為圖片添加寬高屬性並加入 lazy loading
-            //         return match.replace('<img', `<img width="${dimensions.width}" height="${dimensions.height}" loading="lazy"`);
-            //     } catch (err) {
-            //         console.error(`圖片處理錯誤: ${imageUrl}`, err);
-            //         return match;
-            //     }
-            // }))
+            .pipe(replace(/<img[^>]+src=["']([^"']+)\.(jpg|jpeg|png|gif|svg|webp)["'][^>]*>/g, (match, imageUrl, ext) => {
+                try {
+                    const cleanImageUrl = imageUrl.replace(/^\/?(dist\/)?img\//, '');
+                    const imgPath = path.join(__dirname, 'src', 'img', `${cleanImageUrl}.${ext}`);
+                    console.log(`正在處理圖片: ${imgPath}`);
+                    if (!fs.existsSync(imgPath)) {
+                        console.error(`圖片不存在: ${imgPath}`);
+                        return match;
+                    }
+                    const dimensions = sizeOf(fs.readFileSync(imgPath));
+                    // 為圖片添加寬高屬性並加入 lazy loading
+                    return match.replace('<img', `<img width="${dimensions.width}" height="${dimensions.height}" loading="lazy"`);
+                } catch (err) {
+                    console.error(`圖片處理錯誤: ${imageUrl}`, err);
+                    return match;
+                }
+            }))
 
             // 加上 CSS/JS/圖片版本號
-            .pipe(replace(/(href|src)=["']([^"']+\.(css|js|png|jpg|jpeg|gif|svg|webp))["']/g, (match, attr, url) => {
-                if (url.startsWith('http')) return match;
-                return `${attr}="${url}?v=${timestamp}"`;
-            }))
+            // .pipe(replace(/(href|src)=["']([^"']+\.(css|js|png|jpg|jpeg|gif|svg|webp))["']/g, (match, attr, url) => {
+            //     if (url.startsWith('http')) return match;
+            //     return `${attr}="${url}?v=${timestamp}"`;
+            // }))
 
             // 壓縮 html
             .pipe(htmlmin({ removeComments: true }))
@@ -107,7 +118,7 @@ gulp.task('js', () => {
 
 // 複製 library
 gulp.task('library', () => {
-    return gulp.src('src/library/**/*')
+    return gulp.src('src/library/**/*', { encoding: false })
         .pipe(plumber())
         .pipe(gulp.dest('dist/library'));
 });
@@ -140,21 +151,25 @@ gulp.task('images', () => {
 // 開發監看
 gulp.task('watch', () => {
     gulp.watch('src/sass/**/*.sass', gulp.series('sass'));
-    gulp.watch('src/**/*.ejs', gulp.series('html:dist'));
+    // gulp.watch('src/**/*.ejs', gulp.series('html:dist'));
+    gulp.watch('src/**/*.ejs', gulp.series('html:gzip'));
     gulp.watch('src/js/**/*.js', gulp.series('js'));
     gulp.watch('src/library/**/*', gulp.series('library'));
 });
 
-
-
 // 本地開發 dist 不壓縮
 gulp.task('build-dev', gulp.series('sass', 'html:dist', 'js', 'images', 'favicon', 'library', 'watch'));
+
+// 本地開發 localhost 模擬 gzip/brotli 壓縮
+gulp.task('build-dev-gzip', gulp.series('sass', 'html:gzip', 'js', 'images', 'favicon', 'library', 'compress', 'compress-brotli', 'watch'));
 
 // 部屬 Github
 gulp.task('build-prod-github', gulp.series('sass', 'html:flyHigh', 'js', 'images', 'favicon', 'library'));
 
 // 部屬 localhost Netlify vercel 
-gulp.task('build-prod-gzip', gulp.series('sass', 'html:gzip', 'js', 'images', 'favicon', 'library', 'compress'));
+// gulp.task('build-prod-gzip', gulp.series('sass', 'html:gzip', 'js', 'images', 'favicon', 'library'));
+gulp.task('build-prod-gzip', gulp.series('sass', 'html:gzip', 'js', 'images', 'favicon', 'library', 'watch'));
+// gulp.task('build-prod-gzip', gulp.series('sass', 'html:gzip', 'js', 'images', 'favicon', 'library', 'compress', 'compress-brotli', 'generate-headers', 'watch'));
 
 // 預設任務
 gulp.task('default', gulp.series('build-dev'));

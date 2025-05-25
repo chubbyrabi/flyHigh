@@ -1,13 +1,14 @@
-<header>
+<header class="site-header">
     <!-- ————————————————————————— 首頁 ————————————————————————— -->
     <% if (page === 'index') { %>
         <h1 class="header-logo">
-            <a href="{{basePath}}index.html" aria-label="Fly High Home">
+            <a class="logo" href="{{basePath}}index.html" aria-label="Fly High Home">
                 <%- include('../../img/logo.svg') %>
             </a>
             Fly High
         </h1>
         <nav class="header-nav" aria-label="Primary Navigation">
+            <h2 class="visually-hidden">Main Navigation</h2>
             <ul class="nav-ul">
                 <li class="active"><a href="#section_opening">Top</a></li>
                 <li><a href="#section_about">About Us</a></li>
@@ -19,7 +20,7 @@
     <!-- ————————————————————————— 分頁 ————————————————————————— -->
     <% } else { %>
         <div class="header-logo">
-            <a href="{{basePath}}index.html" aria-label="Fly High Home">
+            <a class="logo" href="{{basePath}}index.html" aria-label="Fly High Home">
                 <%- include('../../img/logo.svg') %>
             </a>
         </div>
