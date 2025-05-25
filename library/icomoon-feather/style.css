@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'icomoon-feather';
   src:
-    url('fonts/icomoon-feather.ttf?nchbzp') format('truetype'),
-    url('fonts/icomoon-feather.woff?nchbzp') format('woff'),
-    url('fonts/icomoon-feather.svg?nchbzp#icomoon-feather') format('svg');
+    url('fonts/icomoon-feather.ttf?ry13aw') format('truetype'),
+    url('fonts/icomoon-feather.woff?ry13aw') format('woff'),
+    url('fonts/icomoon-feather.svg?ry13aw#icomoon-feather') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -24,6 +24,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-feather-facebook-fill:before {
+  content: "\ea1a";
+}
+.icon-feather-youtube-fill:before {
+  content: "\ea1b";
+}
+.icon-feather-instagram-fill:before {
+  content: "\ea1c";
+}
 .icon-feather-activity:before {
   content: "\e900";
 }
@@ -315,7 +324,7 @@
 .icon-feather-eye-off:before {
   content: "\e960";
 }
-.icon-feather-facebook:before {
+.icon-feather-facebook1:before {
   content: "\e961";
 }
 .icon-feather-fast-forward:before {
