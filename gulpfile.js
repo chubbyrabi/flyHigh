@@ -167,7 +167,6 @@ gulp.task('build-dev-gzip', gulp.series('sass', 'html:gzip', 'js', 'images', 'fa
 gulp.task('build-prod-github', gulp.series('sass', 'html:flyHigh', 'js', 'images', 'favicon', 'library'));
 
 // 部屬 localhost Netlify vercel 
-// gulp.task('build-prod-gzip', gulp.series('sass', 'html:gzip', 'js', 'images', 'favicon', 'library'));
 gulp.task('build-prod-gzip', gulp.series('sass', 'html:gzip', 'js', 'images', 'favicon', 'library', 'watch'));
 // gulp.task('build-prod-gzip', gulp.series('sass', 'html:gzip', 'js', 'images', 'favicon', 'library', 'compress', 'compress-brotli', 'generate-headers', 'watch'));
 
