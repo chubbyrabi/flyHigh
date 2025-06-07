@@ -2,22 +2,98 @@
 
 // z-index
 header
-    z-index: 5
-    .hb-btn
-        z-index: 1
-    // .hb-menu
+	z-index: 5
+	.hb-btn
+		z-index: 1
+	// .hb-menu
 
 .txt
-    +fontStyle(12)
-    color: $clr-white
+	+fontStyle(12)
+	color: $clr-white
 
 .visually-hidden
-    position: absolute !important
-    width: 1px !important
-    height: 1px !important
-    margin: -1px !important
-    padding: 0 !important
-    overflow: hidden !important
-    clip: rect(0, 0, 0, 0) !important
-    white-space: nowrap !important
-    border: 0 !important
+	position: absolute !important
+	width: 1px !important
+	height: 1px !important
+	margin: -1px !important
+	padding: 0 !important
+	overflow: hidden !important
+	clip: rect(0, 0, 0, 0) !important
+	white-space: nowrap !important
+	border: 0 !important
+
+body:not(.page-home)
+	min-height: 100vh
+
+// —————————————————————————————————————————————————— 隱藏滾動條
+.scroll-hidden
+	overflow: auto				// 或 scroll 看情況
+	-ms-overflow-style: none	// IE & Edge
+	scrollbar-width: none		// Firefox
+	&::-webkit-scrollbar
+		display: none			// Chrome, Safari
+
+// —————————————————————————————————————————————————— 可用滑鼠拖曳的物件
+.drag-scroll-mask,
+.drag-scroll-overlay
+	cursor: grab
+	position: relative
+	overflow-x: auto
+	user-select: none
+	&.dragging
+		cursor: grabbing
+	p,
+	span,
+	.txt
+		user-select: none   // 禁用文字選取
+
+// —————————————————————————————————————————————————— 使用遮罩版本
+.drag-scroll-mask
+	// 左邊還有 (遮罩)
+	&.left-active
+		-webkit-mask-image: linear-gradient(to left, #000 90%, transparent 100%)
+		mask-image: linear-gradient(to left, #000 90%, transparent 100%)
+	// 右邊還有 (遮罩)
+	&.right-active
+		-webkit-mask-image: linear-gradient(to right, #000 90%, transparent 100%)
+		mask-image: linear-gradient(to right, #000 90%, transparent 100%)
+	// 兩邊都有 (遮罩)
+	&.left-active.right-active
+		-webkit-mask-image: linear-gradient(to left, transparent 0%, #000 10%, #000 90%,transparent 100%)
+		mask-image: linear-gradient(to left, transparent 0%, #000 10%, #000 90%,transparent 100%)
+
+// —————————————————————————————————————————————————— 覆蓋版本
+.drag-scroll-overlay
+	&.left-active::before,
+	&.right-active::after
+		content: ''
+		display: inline-block
+		position: sticky
+		top: 0
+		height: var(--drag-height)
+		width: 5%
+		pointer-events: none
+		z-index: 1
+	// 左邊還有 (遮罩)
+	&.left-active::before
+		left: 0
+		background: linear-gradient(to right, #{$clr-black}, transparent)
+	// 右邊還有 (遮罩)
+	&.right-active::after
+		right: 0
+		background: linear-gradient(to left, #{$clr-black}, transparent)
+
+@mixin transparentEdge($direction, $opacityPoint: 90%)
+	$angle: 0deg
+	@if $direction == right
+		$angle: 90deg
+	@else if $direction == left
+		$angle: 270deg
+	@else if $direction == top
+		$angle: 0deg
+	@else if $direction == bottom
+		$angle: 180deg
+	@else
+		@warn "?"
+	-webkit-mask-image: linear-gradient($angle, #000 $opacityPoint, transparent 100%)
+	mask-image: linear-gradient($angle, #000 $opacityPoint, transparent 100%)

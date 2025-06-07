@@ -7,6 +7,7 @@
 }
 
 // 內文最大寬度
+$page-width: calc(100vw - var(--scrollbar));
 $section-width: 1140px;
 
 $page-padding: 3rem;

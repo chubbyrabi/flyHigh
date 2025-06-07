@@ -1,0 +1,133 @@
+@use '../base/global' as *;
+
+$event-width: 20vw
+
+.timeline
+    margin: auto
+    padding: $page-padding 100px
+    width: 100%
+    white-space: nowrap
+    font-size: 0
+    .timeline-phase
+        position: relative
+        display: inline-block
+        vertical-align: top
+        text-align: left
+        width: $event-width
+        // 避免動畫時 節點被切掉
+        padding-left: 10px
+        margin-left: -10px
+        .box-top,
+        .box-buttom
+            position: relative
+        .box-tit
+            +fontStyle(16)
+            font-weight: bold
+        .deco-line
+            height: 100px
+            border-left: .7px solid
+            border-color: $clr-white
+        // —————————————————————————————————————————————————— 未來
+        &.future
+            .deco-line
+                border-color: $clr-gray-6
+            .event
+                &::after
+                    background-color: $clr-gray-6
+            .box-buttom
+                border-color: $clr-gray-6
+                &::after
+                    outline: 3px solid $clr-gray-6
+            // 右邊的箭頭
+            &:last-child
+                .box-buttom
+                    &::before
+                        font-family: 'icomoon-feather' !important
+                        content: '\e934'
+                        position: absolute
+                        left: 100%
+                        top: -2px
+                        font-size: 2.4rem
+                        line-height: 0
+                        color: $clr-gray-6
+    // —————————————————————————————————————————————————— box-top
+    .box-top
+        // .box-tit     font-size: 1.6rem
+        // .box-tit     line-height: 2.2
+        // .txt         font-size: 1.2rem
+        // .txt         line-height: 2
+        // .deco-line   height: 100px
+        height: calc(( 1.6rem * 2.2 ) + ( 1.2rem * 2 ) + 100px )
+        white-space: nowrap
+        // padding-left: 50px
+        .event
+            position: relative
+            display: inline-block
+            background-color: $clr-black
+            .box-tit,
+            .txt
+                color: $clr-main
+                white-space: nowrap
+            // 線
+            &::before
+                content: ''
+                position: absolute
+                top: 0
+                right: 100%
+                width: 50px
+                height: 100%
+                background-image: linear-gradient(-90deg, $clr-black, transparent)
+            // 節點
+            &:after
+                content: ''
+                position: absolute
+                bottom: -5.5px
+                left: -4px
+                width: 8px
+                height: 8px
+                border-radius: 8px
+                background-color: $clr-white
+    // —————————————————————————————————————————————————— box-buttom
+    .box-buttom
+        border-top: 3px solid $clr-white
+        .box-tit
+            color: $clr-white
+        .box-list
+            .txt
+                display: block
+        // 節點
+        &::before,
+        &::after
+            content: ''
+            position: absolute
+            top: -5px
+            left: -5px
+            width: 10px
+            height: 10px
+            border-radius: 10px
+            background-color: $clr-black
+            outline: 3px solid $clr-white
+    // —————————————————————————————————————————————————— 動畫
+    .timeline-phase
+        .box-top
+            display: flex
+            padding-left: 50px
+            .event
+                padding-right: 50px
+        // num-1
+        .box-top.num-1
+            .event
+                width: calc(#{$event-width} - 50px)
+        // num-n
+        @for $n from 2 through 5
+            .box-top.num-#{$n}
+                .event
+                    flex: 1 1 0
+                    min-width: 0    // 避免 event 不會根據父層壓縮寬度
+        // num-n
+        &.open
+            padding-top: 0
+            width: fit-content
+            .box-top:not(.num-1)
+                .event
+                    flex: 0 0 auto

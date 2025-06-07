@@ -3,10 +3,11 @@
 $header-h: 2rem
 
 .site-header
-	position: fixed
+	position: sticky
+	// position: fixed
 	top: 0
 	left: 0
-	width: 100vw
+	width: $page-width
 	padding: $page-padding
 	display: flex
 	align-items: center
@@ -62,7 +63,7 @@ $header-h: 2rem
 	.hb-menu
 		display: block
 		position: fixed
-		width: 100vw
+		width: $page-width
 		height: 100vh
 		top: 0
 		background-color: $clr-black
@@ -154,7 +155,7 @@ body:not(.page-home)
 		span
 			transition: top .3s, transform .3s
 	.hb-menu
-		left: -100vw
+		left: calc( #{$page-width} * -1 )
 		opacity: 0
 		transition: opacity .3s, left 0s .3s
 .header-hb.active

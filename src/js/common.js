@@ -5,7 +5,7 @@
 // —————————————————————————————————————————————————— 慣性滾動
 
 // —————————————————————————————————————————————————— 等頁面完全載入後，移除 loading
-const loadingStart = performance.now();
+window.loadingStart = performance.now();
 
 window.addEventListener('load', () => {
     const loadingEnd = performance.now();
@@ -49,11 +49,83 @@ window.addEventListener('load', updateCustomCSSVars);
 window.addEventListener('resize', updateCustomCSSVars);
 window.addEventListener('pageshow', updateCustomCSSVars);
 
+// —————————————————————————————————————————————————— 滑鼠拖曳 (dragging / 邊緣消失)
+function enableDragScroll($targets) {
+    $targets.each(function () {
+        const $el = $(this);
+
+        let isDown = false;                             // 是否按下滑鼠
+        let startX;                                     // 起始 X 座標
+        let scrollLeft;                                 // 初始 scrollLeft
+        let hasDragged = false;                         // 是否有拖曳過
+
+        // 滑鼠按下，開始拖曳狀態
+        $el.on('mousedown', e => {
+            isDown = true;                              // 開始拖曳
+            hasDragged = false;                         // 尚未拖曳
+            startX = e.pageX;                           // 紀錄起始滑鼠 X 座標
+            scrollLeft = e.currentTarget.scrollLeft;    // 紀錄起始捲動位置
+            $el.addClass('dragging');                   // 加上拖曳樣式（可用於改變游標等）
+        });
+
+        // 滑鼠移動，若處於拖曳中，計算新的 scrollLeft
+        $el.on('mousemove', e => {
+            if (!isDown) return;                        // 非拖曳狀態跳過
+            const deltaX = e.pageX - startX;            // 滑鼠位移距離
+            if (Math.abs(deltaX) > 3) {                 // 移動超過 3px 才算是拖曳（防止誤判點擊）
+                hasDragged = true;                      // 標記有拖曳
+                e.currentTarget.scrollLeft = scrollLeft - deltaX; // 設定新捲動位置
+            }
+        });
+
+        // 滑鼠放開，結束拖曳
+        $(document).on('mouseup.dragScroll', () => {
+            if (isDown) {
+                $el.removeClass('dragging');            // 移除拖曳樣式
+                if (hasDragged) {
+                    $el.data('preventClick', true);     // 若有拖曳過，標記本次點擊事件要被阻擋（避免拖曳後觸發點擊）
+                }
+            }
+            isDown = false;                             // 重置拖曳狀態
+        });
+
+        // 阻擋拖曳結束後的 click 事件
+        $el[0].addEventListener('click', e => {
+            if ($el.data('preventClick')) {
+                e.stopPropagation();                    // 停止事件冒泡
+                e.preventDefault();                     // 阻止預設行為
+                $el.data('preventClick', false);        // 重置標記，讓下一次點擊正常觸發
+            }
+        }, true);                                       // useCapture 設為 true，先攔截 click 事件
+
+        // 監聽捲動事件，判斷是否靠近左右邊緣，切換相應 class
+        $el.on('scroll', () => {
+            const left = $el.scrollLeft();
+            const max  = $el[0].scrollWidth - $el.innerWidth();
+            $el.toggleClass('left-active', left > 10);
+            $el.toggleClass('right-active', left < max - 10);
+        });
+
+        // 抓取 .drag-scroll-overlay 高度（給偽元素用）
+        if ($el.hasClass('drag-scroll-overlay')) {
+            $el[0].style.setProperty('--drag-height', $el.height() + 'px');
+        }
+
+        // 頁面載入時延遲觸發一次 scroll
+        setTimeout(() => $el.trigger('scroll'), 50);
+    });
+}
+
+// 初始化
+$(document).ready(() => {
+    enableDragScroll($('.drag-scroll-mask, .drag-scroll-overlay'));
+});
+
 // —————————————————————————————————————————————————— JS 移除拖曳預覽圖
 document.querySelectorAll('img').forEach(img => {
-  img.addEventListener('dragstart', function (e) {
-    e.preventDefault();
-  });
+    img.addEventListener('dragstart', function (e) {
+        e.preventDefault();
+    });
 });
 
 // —————————————————————————————————————————————————— JS 動態補圖尺寸
@@ -87,7 +159,7 @@ function breadcrumb() {
     breadcrumbList.innerHTML = `<li><a href="/dist/index.html">Top</a></li>`;
 
     const pathArray = location.pathname
-        .replace(/^\/dist\//, '') // ✅ 移除 /dist/ 開頭
+        .replace(/^\/dist\//, '') // 移除 /dist/ 開頭
         .split('/')
         .filter(Boolean);
 

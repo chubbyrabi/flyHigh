@@ -44,27 +44,40 @@ section
 .section-about
     .btn
         width: auto
-    .section-desc
-        font-size: 0
-        .txt
-            display: inline-block
-            width: 50%
-            padding: 0 $page-padding
-            &:nth-of-type(1)
-                text-align: right
-                border-right: 1px solid $clr-white
-            &:nth-of-type(2)
-                text-align: left
+    // .section-desc
+    //     font-size: 0
+    //     .txt
+    //         display: inline-block
+    //         width: 50%
+    //         padding: 0 $page-padding
+    //         &:nth-of-type(1)
+    //             text-align: right
+    //             border-right: 1px solid $clr-white
+    //         &:nth-of-type(2)
+    //             text-align: left
     .section-cards
         margin: 0 auto $page-padding
         width: $section-width
     .card img
         aspect-ratio: 35 / 20
         width: calc((#{$section-width} - #{$page-padding}) / 3)
+.page-home
+    .section-about
+        .section-desc
+            font-size: 0
+            .txt
+                display: inline-block
+                width: 50%
+                padding: 0 $page-padding
+                &:nth-of-type(1)
+                    text-align: right
+                    border-right: 1px solid $clr-white
+                &:nth-of-type(2)
+                    text-align: left
 
 // —————————————————————————————————————————————————— section-team
 .section-team
-    max-width: 100vw
+    max-width: $page-width
     overflow: hidden
     .section-cards
         position: relative
@@ -75,10 +88,10 @@ section
     .card
         clip-path: polygon(#{$role-skew-percent} 0%, 100% 0%, calc(100% - #{$role-skew-percent}) 100%, 0% 100%)
         &:not(:last-child)
-            margin-right: calc($padding - (100vw / #{$role-count-pc} * #{$role-skew-float}))
+            margin-right: calc($padding - (#{$page-width} / #{$role-count-pc} * #{$role-skew-float}))
     .card img
         aspect-ratio: 400 / 566
-        width: calc(100vw / #{$role-count-pc})
+        width: calc(#{$page-width} / #{$role-count-pc})
 
 // —————————————————————————————————————————————————— section-news
 .section-news

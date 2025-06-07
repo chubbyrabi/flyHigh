@@ -70,10 +70,10 @@ function buildHtml(isMinify = true, basePath = '/dist/') {
             }))
 
             // 加上 CSS/JS/圖片版本號
-            // .pipe(replace(/(href|src)=["']([^"']+\.(css|js|png|jpg|jpeg|gif|svg|webp))["']/g, (match, attr, url) => {
-            //     if (url.startsWith('http')) return match;
-            //     return `${attr}="${url}?v=${timestamp}"`;
-            // }))
+            .pipe(replace(/(href|src)=["']([^"']+\.(css|js|png|jpg|jpeg|gif|svg|webp))["']/g, (match, attr, url) => {
+                if (url.startsWith('http')) return match;
+                return `${attr}="${url}?v=${timestamp}"`;
+            }))
 
             // 壓縮 html
             .pipe(htmlmin({ removeComments: true }))
@@ -163,12 +163,8 @@ gulp.task('build-dev', gulp.series('sass', 'html:dist', 'js', 'images', 'favicon
 // 本地開發 localhost 模擬 gzip/brotli 壓縮
 gulp.task('build-dev-gzip', gulp.series('sass', 'html:gzip', 'js', 'images', 'favicon', 'library', 'compress', 'compress-brotli', 'watch'));
 
-// 部屬 Github
-gulp.task('build-prod-github', gulp.series('sass', 'html:flyHigh', 'js', 'images', 'favicon', 'library'));
-
-// 部屬 localhost Netlify vercel 
+// 部屬 Netlify Vercel 
 gulp.task('build-prod-gzip', gulp.series('sass', 'html:gzip', 'js', 'images', 'favicon', 'library', 'watch'));
-// gulp.task('build-prod-gzip', gulp.series('sass', 'html:gzip', 'js', 'images', 'favicon', 'library', 'compress', 'compress-brotli', 'generate-headers', 'watch'));
 
 // 預設任務
 gulp.task('default', gulp.series('build-dev'));
