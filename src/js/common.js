@@ -146,7 +146,7 @@ document.querySelectorAll('img').forEach(img => {
 // });
 
 // —————————————————————————————————————————————————— header-hb
-$('.hb-btn').on('click', function () {
+$('.hb-btn').on('click', function () {    
     $('.header-hb').toggleClass('active');
     $('body').toggleClass('modal-open');
 })

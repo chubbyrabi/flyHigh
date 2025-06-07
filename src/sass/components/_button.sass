@@ -5,14 +5,32 @@
     min-width: 120px
     line-height: $page-padding
     margin: $page-padding
+    // &:active
+    // &:focus
+    // &:disabled
+
 .btn-primary
     color: $clr-white
     outline: 1px solid $clr-white
-    &:hover
+    &:hover,
+    &.active
         color: $clr-black
         background-color: $clr-white
         
-// .btn-main
-// .btn-second
+.btn-main
+    color: $clr-main
+    outline: 1px solid $clr-main
+    &:hover,
+    &.active
+        color: $clr-black
+        background-color: $clr-main
+
+.btn-second
+    color: $clr-second
+    outline: 1px solid $clr-second
+    &:hover,
+    &.active
+        color: $clr-black
+        background-color: $clr-second
 // .btn-third
 // .btn-disabled
