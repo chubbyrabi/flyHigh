@@ -7,9 +7,16 @@ header
 		z-index: 1
 	// .hb-menu
 
+.txt-group
+	margin-bottom: 1rem
+
 .txt
 	+fontStyle(12)
 	color: $clr-white
+	&.event
+		color: $clr-main
+	&.notice
+		color: $clr-second
 
 .visually-hidden
 	position: absolute !important
@@ -24,6 +31,59 @@ header
 
 body:not(.page-home)
 	min-height: 100vh
+
+.box-img
+	overflow: hidden
+	img
+		transition: .3s
+		&:hover
+			transform: scale(1.2)
+
+.pagination
+	margin: $padding
+	.page-list
+		display: inline-block
+
+// —————————————————————————————————————————————————— section
+section
+	margin: auto
+	padding: $page-padding 0
+	text-align: center
+
+.section-tit
+	margin: $page-padding auto
+	width: fit-content
+	max-width: $section-width
+	color: $clr-white
+	&.size-l
+		+fontStyle(48)
+	&.size-m
+		+fontStyle(32)
+	&.size-s
+		+fontStyle(20)
+		margin: 0
+
+h1.section-tit
+	&.size-l
+		font-size: 4.8rem
+	&.size-m
+		font-size: 3.2rem
+	&.size-s
+		font-size: 2.0rem
+
+.section-desc
+	margin: 0 auto $page-padding
+	width: $section-width
+	.txt
+		line-height: 2
+		// color: $clr-gray-8
+.section-cards
+	font-size: 0
+	user-select: none
+	.card
+		display: inline-block
+		vertical-align: top
+		font-size: initial
 
 // —————————————————————————————————————————————————— 隱藏滾動條
 .scroll-hidden

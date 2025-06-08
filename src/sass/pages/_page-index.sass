@@ -1,57 +1,20 @@
 @use '../base/global' as *
 
-section
-    margin: auto
-    padding: $page-padding 0
-    text-align: center
-.section-tit
-    margin: $page-padding auto
-    width: fit-content
-    max-width: $section-width
-    +fontStyle(48)
-    color: $clr-white
-.section-subtit
-    margin: $page-padding auto
-    width: fit-content
-    max-width: $section-width
-    +fontStyle(32)
-    color: $clr-white
-.section-desc
-    margin: 0 auto $page-padding
-    width: $section-width
-    .txt
-        line-height: 2
-        // color: $clr-gray-8
-.section-cards
-    font-size: 0
-    user-select: none
-    .card
-        display: inline-block
-        vertical-align: top
-        font-size: initial
-.box-img
-    overflow: hidden
-    img
-        transition: .3s
-        &:hover
-            transform: scale(1.2)
-
-// —————————————————————————————————————————————————— section-opening
-.section-opening
-    height: 100vh
-
-// —————————————————————————————————————————————————— section-about
-.section-about
-    .btn
-        width: auto
-    .section-cards
-        margin: 0 auto $page-padding
-        width: $section-width
-    .card img
-        aspect-ratio: 35 / 20
-        width: calc((#{$section-width} - #{$page-padding}) / 3)
 .page-home
+    // —————————————————————————————————————————————————— section-opening
+    .section-opening
+        height: 100vh
+
+    // —————————————————————————————————————————————————— section-about
     .section-about
+        .btn
+            width: auto
+        .section-cards
+            margin: 0 auto $page-padding
+            width: $section-width
+        .card img
+            aspect-ratio: 35 / 20
+            width: calc((#{$section-width} - #{$page-padding}) / 3)
         .section-desc
             font-size: 0
             .txt
@@ -64,114 +27,114 @@ section
                 &:nth-of-type(2)
                     text-align: left
 
-// —————————————————————————————————————————————————— section-team
-.section-team
-    max-width: $page-width
-    overflow: hidden
-    .section-cards
-        position: relative
-        left: 50%
-        transform: translateX(-50%)
-        width: fit-content
-        white-space: nowrap
-    .card
-        clip-path: polygon(#{$role-skew-percent} 0%, 100% 0%, calc(100% - #{$role-skew-percent}) 100%, 0% 100%)
-        &:not(:last-child)
-            margin-right: calc($padding - (#{$page-width} / #{$role-count-pc} * #{$role-skew-float}))
-    .card img
-        aspect-ratio: 400 / 566
-        width: calc(#{$page-width} / #{$role-count-pc})
-
-// —————————————————————————————————————————————————— section-news
-.section-news
-    .section-cards
-        margin: 0 auto $page-padding
-        width: $section-width
-    .card
-        cursor: pointer
-        &:hover
-            .hover-wrapper
-                transform: translateY(-0.8rem)
-    .hover-wrapper
-        position: relative
-        text-align: left
-        padding: $padding
-        background-color: $clr-gray-2
-        transition: transform .15s
-    .card-tit
-        +fontStyle(16)
-        line-height: 2
-        font-weight: bold
-        color: $clr-white
-    .card-txt
-        +fontStyle(12)
-        line-height: 2
-        color: $clr-white
-        display: -webkit-box
-        -webkit-line-clamp: 3
-        -webkit-box-orient: vertical
+    // —————————————————————————————————————————————————— section-team
+    .section-team
+        max-width: $page-width
         overflow: hidden
-        text-overflow: ellipsis
-    .card-tag
-        position: absolute
-        top: 0
-        right: 0
-        +fontStyle(12)
-        color: $clr-black
-        font-weight: bold
-        padding: 0 5px
-        &.tag-top
-            background-color: $clr-main
-        &.tag-new
-            background-color: $clr-second
-
-// —————————————————————————————————————————————————— section-contact
-.section-contact
-    background-color: $clr-gray-2
-    .section-content
-        margin: 0 auto $page-padding
-        width: $section-width
-        text-align: left
-    .social-icons,
-    .btn-primary
-        margin: 3rem 0
-    .txt
-        padding: 35px 5px 10px
-    .box-left
-        .txt
-            border-bottom: 1px solid transparent
-    .box-right
-        text-align: right
-        .form-group
+        .section-cards
             position: relative
-        label
-            pointer-events: none
-            position: absolute
-            left: 5px
-            bottom: 10px
-            padding: 0
-            transition: .2s
-        input
-            width: 100%
-            border: none
-            outline: none
-            background: none
-            // border-bottom: 1px solid $clr-white
-            border-bottom: 1px solid $clr-gray-8
-            transition: border 0.2s ease-out
-            &:focus
-                border-bottom-color: $clr-main
-            &:is(:focus, :valid) ~ label,           // focus, 格式正確
-            &:not(:placeholder-shown) ~ label       // 不是空值
-                bottom: 40px
-                color: $clr-main
+            left: 50%
+            transform: translateX(-50%)
+            width: fit-content
+            white-space: nowrap
+        .card
+            clip-path: polygon(#{$role-skew-percent} 0%, 100% 0%, calc(100% - #{$role-skew-percent}) 100%, 0% 100%)
+            &:not(:last-child)
+                margin-right: calc($padding - (#{$page-width} / #{$role-count-pc} * #{$role-skew-float}))
+        .card img
+            aspect-ratio: 400 / 566
+            width: calc(#{$page-width} / #{$role-count-pc})
 
-// —————————————————————————————————————————————————— section-partners
-.section-partners
-    padding: calc(#{$page-padding}*2) 0
-    .list-item
-        &:not(:last-child)
-            margin-right: $page-padding
-        img
-            aspect-ratio: 3 / 2
-            width: 80px
+    // —————————————————————————————————————————————————— section-news
+    .section-news
+        max-width: $section-width
+        .section-cards
+            margin: 0 auto $page-padding
+        .card
+            cursor: pointer
+            &:hover
+                .hover-wrapper
+                    transform: translateY(-0.8rem)
+        .hover-wrapper
+            position: relative
+            text-align: left
+            padding: $padding
+            background-color: $clr-gray-2
+            transition: transform .15s
+        .card-tit
+            +fontStyle(16)
+            line-height: 2
+            font-weight: bold
+            color: $clr-white
+        .card-txt
+            +fontStyle(12)
+            line-height: 2
+            color: $clr-white
+            display: -webkit-box
+            -webkit-line-clamp: 3
+            -webkit-box-orient: vertical
+            overflow: hidden
+            text-overflow: ellipsis
+        .card-tag
+            position: absolute
+            top: 0
+            right: 0
+            +fontStyle(12)
+            color: $clr-black
+            font-weight: bold
+            padding: 0 5px
+            &.tag-top
+                background-color: $clr-main
+            &.tag-new
+                background-color: $clr-second
+
+    // —————————————————————————————————————————————————— section-contact
+    .section-contact
+        background-color: $clr-gray-2
+        .section-content
+            margin: 0 auto $page-padding
+            width: $section-width
+            text-align: left
+        .social-icons,
+        .btn-primary
+            margin: 3rem 0
+        .txt
+            padding: 35px 5px 10px
+        .box-left
+            .txt
+                border-bottom: 1px solid transparent
+        .box-right
+            text-align: right
+            .form-group
+                position: relative
+            label
+                pointer-events: none
+                position: absolute
+                left: 5px
+                bottom: 10px
+                padding: 0
+                transition: .2s
+            input
+                width: 100%
+                border: none
+                outline: none
+                background: none
+                // border-bottom: 1px solid $clr-white
+                border-bottom: 1px solid $clr-gray-8
+                transition: border 0.2s ease-out
+                &:focus
+                    border-bottom-color: $clr-main
+                &:is(:focus, :valid) ~ label,           // focus, 格式正確
+                &:not(:placeholder-shown) ~ label       // 不是空值
+                    bottom: 40px
+                    color: $clr-main
+
+    // —————————————————————————————————————————————————— section-partners
+    .section-partners
+        padding: calc(#{$page-padding}*2) 0
+        .list-item
+            &:not(:last-child)
+                margin-right: $page-padding
+            img
+                aspect-ratio: 3 / 2
+                width: 80px

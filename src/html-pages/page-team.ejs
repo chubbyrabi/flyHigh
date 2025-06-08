@@ -6,15 +6,13 @@
     <%- include('../html/layouts/header', { page: 'team' }) %>
     <%- include('../html/components/nav-breadcrumb') %>
     <main class="site-main">
-        <section>
-            <h1 class="section-tit">Our Team</h1>
+        <section class="section-team">
+            <h1 class="section-tit size-l">Our Team</h1>
         </section>
     </main>
     <%- include('../html/layouts/footer') %>
     <!-- <%- include('../html/components/mask') %> -->
 
-    <script type="text/javascript" src="{{basePath}}library/jquery-3.7.1.min.js"></script>
-    <!-- <script type="text/javascript" src="{{basePath}}js/common.min.js"></script> -->
-    <script type="text/javascript" src="{{basePath}}js/page-teams.min.js"></script>
+    <script type="text/javascript" src="{{basePath}}js/page-teams.min.js" defer></script>
 </body>
 </html>

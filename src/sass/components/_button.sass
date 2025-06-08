@@ -5,6 +5,24 @@
     min-width: 120px
     line-height: $page-padding
     margin: $page-padding
+    vertical-align: middle
+    transition: color .3s, background-color .3s
+    // &:active
+    // &:focus
+    // &:disabled
+
+.btn-circle
+    position: relative
+    +fontStyle(12)
+    width: 3rem
+    height: 3rem
+    border-radius: 100px
+    margin: $padding
+    vertical-align: middle
+    transition: color .3s, background-color .3s
+    i
+        +fontStyle(16)
+        line-height: 3rem
     // &:active
     // &:focus
     // &:disabled
@@ -13,14 +31,16 @@
     color: $clr-white
     outline: 1px solid $clr-white
     &:hover,
+    &:focus,
     &.active
         color: $clr-black
         background-color: $clr-white
-        
+
 .btn-main
     color: $clr-main
     outline: 1px solid $clr-main
     &:hover,
+    &:focus,
     &.active
         color: $clr-black
         background-color: $clr-main
@@ -29,8 +49,68 @@
     color: $clr-second
     outline: 1px solid $clr-second
     &:hover,
+    &:focus,
     &.active
         color: $clr-black
         background-color: $clr-second
 // .btn-third
 // .btn-disabled
+
+
+
+.btn-prev,
+.btn-next
+    .btn-label
+        pointer-events: none
+        position: absolute
+        top: 1rem
+        line-height: 3rem
+        color: $clr-white
+        opacity: 0
+        transition: top .3s, opacity .3s
+    &:hover
+        .btn-label
+            top: 0
+            opacity: 1
+.btn-prev
+    margin-right: calc( $page-padding * 3 )
+    .btn-label
+        left: calc( 100% + 1rem )
+.btn-next
+    margin-left: calc( $page-padding * 3 )
+    .btn-label
+        right: calc( 100% + 1rem )
+
+.btn-line
+    position: relative
+    +fontStyle(12)
+    color: $clr-white
+    vertical-align: middle
+    &::after
+        content: ''
+        position: absolute
+        bottom: 0
+        left: 0
+        display: block
+        width: 100%
+        height: .7px
+        background-color: $clr-white
+        transform-origin: right center
+        // transition: scale .3s ease-in
+        scale: 1 1
+    &:hover::after
+        animation: underline-reset .6s ease-in-out forwards
+
+@keyframes underline-reset
+    0%
+        scale: 1 1
+        transform-origin: right center
+    49%
+        scale: 0 1
+        transform-origin: right center
+    50%
+        scale: 0 1
+        transform-origin: left center
+    100%
+        scale: 1 1
+        transform-origin: left center

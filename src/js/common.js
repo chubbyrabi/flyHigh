@@ -2,7 +2,33 @@
 //   $('img').attr('loading', 'lazy'); // 為所有圖片加上 lazy loading
 // });
 
-// —————————————————————————————————————————————————— 慣性滾動
+// —————————————————————————————————————————————————— 滾動監聽
+// function debounce(func, wait = 100) {
+//     let timeout;
+//     return function (...args) {
+//         clearTimeout(timeout);
+//         timeout = setTimeout(() => func.apply(this, args), wait);
+//     };
+// }
+// $(window).on('scroll', debounce(function () {
+//     if (!isScrollingByClick) handleScrollAndUpdateNav();
+// }, 100));
+
+// —————————————————————————————————————————————————— 滾動監聽 lenis
+const lenis = new Lenis({
+    smooth: true,
+    direction: 'vertical',
+    gestureDirection: 'vertical',
+    smoothTouch: false,
+    lerp: 0.08,               // 滾動的慣性，數值越低滑行時間越長
+    wheelMultiplier: 1.2,     // 滾輪速度倍數，預設是 1
+    // touchMultiplier: 2.0      // 觸控拖曳倍數，預設是 1
+})
+function raf(time) {
+    lenis.raf(time)
+    requestAnimationFrame(raf)
+}
+requestAnimationFrame(raf)
 
 // —————————————————————————————————————————————————— 等頁面完全載入後，移除 loading
 window.loadingStart = performance.now();
@@ -48,6 +74,27 @@ function updateCustomCSSVars() {
 window.addEventListener('load', updateCustomCSSVars);
 window.addEventListener('resize', updateCustomCSSVars);
 window.addEventListener('pageshow', updateCustomCSSVars);
+
+// —————————————————————————————————————————————————— 計算元素 top (有定位或旋轉時)
+// let docH =   $(document).height();       // 整份文件高度
+// let winH =   $(window).height();         // 視窗高度
+// let winW =   $(window).width();          // 視窗寬度
+// let scrTop = $(window).scrollTop();      // 被卷出視窗的高度
+// let objH =   $('section').outerHeight(); // 元素本身的高度
+// let objTop = $('section').offset().top;  // 元素'頂端'離文件頂部距離
+// let objBtop = objTop + objH;             // 元素'底端'離文件頂部距離
+
+function getOffsetTop(element){
+    // var offsetLeft = 0;
+    var offsetTop  = 0;
+    while(element){
+        // offsetLeft += element.offsetLeft;
+        offsetTop  += element.offsetTop;
+        element = element.offsetParent;
+    }
+    // return [offsetLeft, offsetTop];
+    return [offsetTop];
+}
 
 // —————————————————————————————————————————————————— 滑鼠拖曳 (dragging / 邊緣消失)
 function enableDragScroll($targets) {

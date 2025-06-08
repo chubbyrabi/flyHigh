@@ -1,13 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <%- include('../html/layouts/head', { page: 'news' }) %>
 
 <body class="page-news hidden">
     <%- include('../html/layouts/header', { page: 'news' }) %>
     <%- include('../html/components/nav-breadcrumb') %>
-    <main>
-        <section>
-            <h1>News</h1>
+    <main class="site-main">
+        <section class="section-news-detail">
+            <div class="news-meta">
+                <span class="news-date txt" datetime="2025-02-05">2025-02-05</span>
+                <a href="{{basePath}}html-pages/page-news.html?type=notice" class="news-category txt notice">お知らせ</a>
+            </div>
+            <h1 class="section-tit size-s">夏季休業のお知らせ</h1>
+            <hr class="news-divider"/>
+            <div class="news-content">
+                <div class="txt-group">
+                    <p class="txt">平素は格別のお引き立てをいただき厚くお礼申し上げます。</p>
+                    <p class="txt">弊社では、誠に勝手ながら下記日程を夏季休業とさせていただきます。</p>
+                </div>
+                <div class="txt-group">
+                    <p class="txt">— 夏季休業期間</p>
+                    <p class="txt">2024年8月10日(土) ～ 8月15日(木)</p>
+                </div>
+                <div class="txt-group">
+                    <p class="txt">休業期間中にいただいたお問合せについては、営業開始日以降に順次回答させていただきます。</p>
+                    <p class="txt">皆様には大変ご不便をおかけいたしますが、何卒ご理解の程お願い申し上げます。</p>
+                </div>
+                <div class="txt-group">
+                    <p class="txt">— 二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十</p>
+                </div>
+            </div>
+            <hr class="news-divider"/>
+            <%- include('../html/components/news-navigation.ejs') %>
         </section>
     </main>
     <%- include('../html/layouts/footer') %>

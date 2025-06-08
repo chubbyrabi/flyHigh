@@ -7,7 +7,7 @@
     <%- include('../html/components/nav-breadcrumb') %>
     <main class="site-main">
         <section class="section-news">
-            <h1 class="section-tit">News</h1>
+            <h1 class="section-tit size-l">News</h1>
             <div class="filter-buttons">
                 <button type="button" class="btn btn-primary active" data-type="all">All</button>
                 <button type="button" class="btn btn-main" data-type="event">Events</button>
@@ -15,7 +15,7 @@
             </div>
             <ul class="news-list">
                 <li class="news-item event" data-type="event">
-                    <a href="/news/nekomavs-karasuno" class="news-link">
+                    <a href="{{basePath}}html-news/news-01.html" class="news-link">
                         <time class="news-date" datetime="2025-01-30">2025-01-30</time>
                         <span class="news-category event">Events</span>
                         <span class="news-badge tag-top">Top</span>
@@ -24,7 +24,7 @@
                     </a>
                 </li>
                 <li class="news-item notice" data-type="notice">
-                    <a href="/news/new-notice-0208" class="news-link">
+                    <a href="{{basePath}}html-news/news-02.html" class="news-link">
                         <time class="news-date" datetime="2025-02-08">2025-02-08</time>
                         <span class="news-category notice">Notices</span>
                         <span class="news-badge tag-new">New</span>
@@ -33,7 +33,7 @@
                     </a>
                 </li>
                 <li class="news-item notice" data-type="notice">
-                    <a href="/news/new-notice-0208" class="news-link">
+                    <a href="{{basePath}}html-news/news-01.html" class="news-link">
                         <time class="news-date" datetime="2025-02-06">2025-02-06</time>
                         <span class="news-category notice">Notices</span>
                         <span class="news-title">Purus imperdiet et cum laoreet</span>
@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <li class="news-item notice" data-type="notice">
-                    <a href="/news/new-notice-0208" class="news-link">
+                    <a href="{{basePath}}html-news/news-02.html" class="news-link">
                         <time class="news-date" datetime="2025-02-01">2025-02-01</time>
                         <span class="news-category notice">Notices</span>
                         <span class="news-title">Varius sed ipsum aliquet et convallis turpis sit imperdiet vel adipiscing eget</span>
@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li class="news-item notice" data-type="notice">
-                    <a href="/news/new-notice-0208" class="news-link">
+                    <a href="{{basePath}}html-news/news-01.html" class="news-link">
                         <time class="news-date" datetime="2025-01-22">2025-01-22</time>
                         <span class="news-category notice">Notices</span>
                         <span class="news-title">Tristique ut vivamus netus</span>
@@ -57,7 +57,7 @@
                     </a>
                 </li>
                 <li class="news-item notice" data-type="notice">
-                    <a href="/news/new-notice-0208" class="news-link">
+                    <a href="{{basePath}}html-news/news-02.html" class="news-link">
                         <time class="news-date" datetime="2025-01-16">2025-01-16</time>
                         <span class="news-category notice">Notices</span>
                         <span class="news-title">Lorem ipsum dolor sit amet consectetur</span>
@@ -65,7 +65,7 @@
                     </a>
                 </li>
                 <li class="news-item notice" data-type="notice">
-                    <a href="/news/new-notice-0208" class="news-link">
+                    <a href="{{basePath}}html-news/news-01.html" class="news-link">
                         <time class="news-date" datetime="2025-01-05">2025-01-05</time>
                         <span class="news-category notice">Notices</span>
                         <span class="news-title">Purus imperdiet et cum laoreet</span>
@@ -73,7 +73,7 @@
                     </a>
                 </li>
                 <li class="news-item notice" data-type="notice">
-                    <a href="/news/new-notice-0208" class="news-link">
+                    <a href="{{basePath}}html-news/news-02.html" class="news-link">
                         <time class="news-date" datetime="2024-12-12">2024-12-12</time>
                         <span class="news-category notice">Notices</span>
                         <span class="news-title">Varius sed ipsum aliquet et convallis turpis sit imperdiet vel adipiscing eget Varius sed ipsum aliquet et convallis turpis sit imperdiet vel adipiscing eget</span>
@@ -81,7 +81,7 @@
                     </a>
                 </li>
                 <li class="news-item notice" data-type="notice">
-                    <a href="/news/new-notice-0208" class="news-link">
+                    <a href="{{basePath}}html-news/news-01.html" class="news-link">
                         <time class="news-date" datetime="2024-12-09">2024-12-09</time>
                         <span class="news-category notice">Notices</span>
                         <span class="news-title">Tristique ut vivamus netus</span>
@@ -89,7 +89,7 @@
                     </a>
                 </li>
                 <li class="news-item notice" data-type="notice">
-                    <a href="/news/new-notice-0208" class="news-link">
+                    <a href="{{basePath}}html-news/news-02.html" class="news-link">
                         <time class="news-date" datetime="2024-11-27">2024-11-27</time>
                         <span class="news-category notice">Notices</span>
                         <span class="news-title">Lorem ipsum dolor sit amet consectetur</span>
@@ -97,13 +97,12 @@
                     </a>
                 </li>
             </ul>
+            <%- include('../html/components/nav-pagination') %>
         </section>
     </main>
     <%- include('../html/layouts/footer') %>
     <!-- <%- include('../html/components/mask') %> -->
 
-    <script type="text/javascript" src="{{basePath}}library/jquery-3.7.1.min.js"></script>
-    <!-- <script type="text/javascript" src="{{basePath}}js/common.min.js"></script> -->
-    <script type="text/javascript" src="{{basePath}}js/page-news.min.js"></script>
+    <script type="text/javascript" src="{{basePath}}js/page-news.min.js" defer></script>
 </body>
 </html>

@@ -41,6 +41,7 @@
     <link rel="preload" href="{{basePath}}library/jquery-3.7.1.min.js" as="script">
     <link rel="preload" href="{{basePath}}library/lenis.min.js" as="script">
     <link rel="preload" href="{{basePath}}js/common.min.js" as="script">
+
     <!-- 延後執行，不阻塞渲染 -->
     <script src="{{basePath}}library/jquery-3.7.1.min.js" defer></script>
     <script src="{{basePath}}library/lenis.min.js" defer></script>
@@ -54,5 +55,15 @@
     .hidden main,
     .hidden footer {
         visibility: hidden
+    }
+    /* lighthouse 讀不到 h1 大小，會扣分 */
+    h1.size-l {
+        font-size: 4.8rem;
+    }
+    h1.size-m {
+        font-size: 3.2rem;
+    }
+    h1.size-s {
+        font-size: 2.0rem;
     }
 </style>
