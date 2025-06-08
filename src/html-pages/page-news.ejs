@@ -7,18 +7,20 @@
     <%- include('../html/components/nav-breadcrumb') %>
     <main class="site-main">
         <section class="section-news">
-            <h1 class="section-tit size-l">News</h1>
-            <div class="filter-buttons">
-                <button type="button" class="btn btn-primary active" data-type="all">All</button>
-                <button type="button" class="btn btn-main" data-type="event">Events</button>
-                <button type="button" class="btn btn-second" data-type="notice">Notices</button>
-            </div>
+            <!-- <div class="section-header"> -->
+                <h1 class="section-tit size-l">News</h1>
+                <div class="filter-buttons">
+                    <button type="button" class="btn btn-primary active" data-type="all">All</button>
+                    <button type="button" class="btn btn-main" data-type="event">Events</button>
+                    <button type="button" class="btn btn-second" data-type="notice">Notices</button>
+                </div>
+            <!-- </div> -->
             <ul class="news-list">
                 <li class="news-item event" data-type="event">
                     <a href="{{basePath}}html-news/news-01.html" class="news-link">
                         <time class="news-date" datetime="2025-01-30">2025-01-30</time>
                         <span class="news-category event">Events</span>
-                        <span class="news-badge tag-top">Top</span>
+                        <span class="tag tag-top">Top</span>
                         <span class="news-title">Nekoma V.S. karasuno</span>
                         <i class="news-arrow icon-feather-chevron-right"></i>
                     </a>
@@ -27,7 +29,7 @@
                     <a href="{{basePath}}html-news/news-02.html" class="news-link">
                         <time class="news-date" datetime="2025-02-08">2025-02-08</time>
                         <span class="news-category notice">Notices</span>
-                        <span class="news-badge tag-new">New</span>
+                        <span class="tag tag-new">New</span>
                         <span class="news-title">Et dignissim ut volutpat quis porttitor faucibus faucibus</span>
                         <i class="news-arrow icon-feather-chevron-right"></i>
                     </a>

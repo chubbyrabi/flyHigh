@@ -4,6 +4,17 @@
 .page-news
     .section-news
         max-width: $section-width
+    // .section-header
+    //     display: flex
+    //     justify-content: space-between
+    //     align-items: center
+    //     margin: $padding 0
+    //     .section-tit
+    //         margin: 0
+    .filter-buttons
+        .btn
+            margin: $padding
+            margin-bottom: $page-padding
     .news-list
         opacity: 1
         transform: translateY(0)
@@ -51,17 +62,6 @@
                 color: $clr-main
             &.notice
                 color: $clr-second
-        .news-badge
-            min-width: 4rem
-            padding: 0 .5rem
-            +fontStyle(12)
-            line-height: 1.5
-            font-weight: bold
-            color: $clr-black
-            &.tag-top
-                background-color: $clr-main
-            &.tag-new
-                background-color: $clr-second
         .news-title
             flex: 1
             color: $clr-white
