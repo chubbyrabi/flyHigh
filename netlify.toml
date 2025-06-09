@@ -1,0 +1,7 @@
+# netlify.toml
+[[headers]]
+for = "/library/fonts/*.woff2"
+    [headers.values]
+    Content-Encoding = "br"
+    Content-Type = "font/woff2"
+    Cache-Control = "public, max-age=31536000"
