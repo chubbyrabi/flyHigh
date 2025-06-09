@@ -6,8 +6,7 @@
     url('fonts/icomoon-feather.svg?ry13aw#icomoon-feather') format('svg');
   font-weight: normal;
   font-style: normal;
-  /* font-display: block; */
-  font-display: swap;
+  font-display: block;
 }
 
 [class^="icon-feather-"], [class*=" icon-feather-"] {
