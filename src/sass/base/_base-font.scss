@@ -1,12 +1,52 @@
 @use 'sass:map';
 
 // —————————————————————————————————————————————————— 英文：Inter
+// @font-face {
+// 	font-family: 'Inter';
+// 	src: url('../library/fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype');
+// 	font-weight: 100 900;
+// 	font-style: normal;
+// 	font-display: swap;
+// }
+// —————————————————————————————————————————————————— inter-300
 @font-face {
-	font-family: 'Inter';
-	src: url('../library/fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype');
-	font-weight: 100 900;
-	font-style: normal;
 	font-display: swap;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 300;
+	src: url('../library/fonts/inter-v19-latin-300.woff2') format('woff2');
+}
+// —————————————————————————————————————————————————— inter-400
+@font-face {
+	font-display: swap;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../library/fonts/inter-v19-latin-regular.woff2') format('woff2');
+}
+// —————————————————————————————————————————————————— inter-600
+@font-face {
+	font-display: swap;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 600;
+	src: url('../library/fonts/inter-v19-latin-600.woff2') format('woff2');
+}
+// —————————————————————————————————————————————————— inter-700
+@font-face {
+	font-display: swap;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	src: url('../library/fonts/inter-v19-latin-700.woff2') format('woff2');
+}
+// —————————————————————————————————————————————————— inter-800
+@font-face {
+	font-display: swap;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 800;
+	src: url('../library/fonts/inter-v19-latin-800.woff2') format('woff2');
 }
 
 html {

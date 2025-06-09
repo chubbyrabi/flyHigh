@@ -17,6 +17,16 @@ const timestamp = Date.now();
 const gzip = require('gulp-gzip');
 const brotli = require('gulp-brotli');
 
+// 啟用 brotli 壓縮字型
+// gulp.task('compress-brotli-fonts', () => {
+//   return gulp.src(['dist/**/*.{woff2}'])
+//     .pipe(brotli.compress({
+//       extension: 'br',
+//       quality: 11
+//     }))
+//     .pipe(gulp.dest('dist'));
+// });
+
 // 啟用 brotli 壓縮
 gulp.task('compress-brotli', () => {
   return gulp.src(['dist/**/*.{html,css,js}'])
@@ -28,7 +38,7 @@ gulp.task('compress-brotli', () => {
 });
 
 // 啟用 gzip 壓縮
-gulp.task('compress', function () {
+gulp.task('compress-gzip', function () {
   return gulp.src(['dist/**/*.html', 'dist/**/*.css', 'dist/**/*.js'])
     .pipe(gzip())
     .pipe(gulp.dest('dist'));
@@ -160,11 +170,11 @@ gulp.task('watch', () => {
 // 本地開發 dist 不壓縮
 gulp.task('build-dev', gulp.series('sass', 'html:dist', 'js', 'images', 'favicon', 'library', 'watch'));
 
-// 本地開發 localhost 模擬 gzip/brotli 壓縮
-gulp.task('build-dev-gzip', gulp.series('sass', 'html:gzip', 'js', 'images', 'favicon', 'library', 'compress', 'compress-brotli', 'watch'));
+// 本地開發 localhost 模擬 brotli 壓縮
+gulp.task('build-dev-br', gulp.series('sass', 'html:gzip', 'js', 'images', 'favicon', 'library', 'compress-brotli', 'watch'));
 
 // 部屬 Netlify Vercel 
-gulp.task('build-prod-gzip', gulp.series('sass', 'html:gzip', 'js', 'images', 'favicon', 'library', 'watch'));
+gulp.task('build-prod-br', gulp.series('sass', 'html:gzip', 'js', 'images', 'favicon', 'library'));
 
 // 預設任務
 gulp.task('default', gulp.series('build-dev'));

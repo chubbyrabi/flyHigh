@@ -5,8 +5,8 @@
   "scripts": {
     "start-server": "node server.js",
     "build-dev": "gulp build-dev",
-    "build-dev-gzip": "gulp build-dev-gzip",
-    "build-prod-gzip": "gulp build-prod-gzip",
+    "build-dev-br": "gulp build-dev-br",
+    "build-prod-br": "gulp build-prod-br",
     "deploy-netlify": "gh-pages -d dist -b dev-netlify",
     "deploy-vercel": "gh-pages -d dist -b dev-vercel"
   },
