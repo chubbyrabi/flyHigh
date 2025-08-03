@@ -8,7 +8,8 @@
         display: block
         +fontStyle(20)
         color: $clr-white
-        &:hover
-            transform: scale(1.2)
-            color: $clr-main
-            transition: .2s
+        +media(pc)
+            &:hover
+                transform: scale(1.2)
+                color: $clr-main
+                transition: .2s

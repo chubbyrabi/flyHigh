@@ -1,5 +1,6 @@
 node_modules/
 dist/
+notes/
 
 # npm list --depth=0
 # npm uninstall gulp-cheerio

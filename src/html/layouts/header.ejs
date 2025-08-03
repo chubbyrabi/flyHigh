@@ -8,7 +8,7 @@
             Fly High
         </h1>
         <nav class="header-nav" aria-label="Primary Navigation">
-            <h2 class="visually-hidden">Main Navigation</h2>
+            <h2 class="visually-hide">Main Navigation</h2>
             <ul class="nav-ul">
                 <li class="active"><a href="#section_opening">Top</a></li>
                 <li><a href="#section_about">About Us</a></li>
@@ -35,16 +35,62 @@
         </nav>
     <% } %>
     <!-- ————————————————————————— 漢堡 ————————————————————————— -->
-    <div class="header-hb">
+    <div class="header-hb" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
         <button class="hb-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="hb_menu">
             <span></span>
             <span></span>
         </button>
-        <div  id="hb_menu" class="hb-menu" aria-label="Mobile Navigation" hidden>
-            <ul class="menu-list">
-                <li><a href="{{basePath}}html-pages/page-about.html">About Us</a></li>
-                <li><a href="{{basePath}}html-pages/page-team.html">Our Team</a></li>
-                <li><a href="{{basePath}}html-pages/page-news.html">News</a></li>
+        <div id="hb_menu" class="hb-menu" aria-label="Mobile Navigation" aria-hidden="true">
+            <ul class="card-list">
+                <li class="card">
+                    <p class="txt">karasuno.volleyball@gmail.com</p>
+                    <p class="txt">(+81) 022-211-2111</p>
+                    <p class="txt">Dai 9 Chiwari-34-1 Karasuno, Miyagi-ken 028-6302, Japan</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="icon-feather-facebook-fill"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="icon-feather-instagram-fill"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="icon-feather-youtube-fill"></i></a>
+                    </div>
+                </li>
+                <li class="card">
+                    <div class="box-img">
+                        <img src="{{basePath}}img/member_01.webp" alt="介紹1">
+                    </div>
+                    <span class="card-num">02</span>
+                    <span class="card-tit">About Us</span>
+                    <div class="card-txt">
+                        <span class="txt">test text</span>
+                        <span class="txt">test text</span>
+                        <span class="txt">test text</span>
+                    </div>
+                    <a href="{{basePath}}html-pages/page-about.html" class="btn btn-primary">View More</a>
+                </li>
+                <li class="card">
+                    <div class="box-img">
+                        <img src="{{basePath}}img/member_01.webp" alt="介紹1">
+                    </div>
+                    <span class="card-num">03</span>
+                    <span class="card-tit">Our Team</span>
+                    <div class="card-txt">
+                        <span class="txt">test text</span>
+                        <span class="txt">test text</span>
+                        <span class="txt">test text</span>
+                    </div>
+                    <a href="{{basePath}}html-pages/page-team.html" class="btn btn-primary">View More</a>
+                </li>
+                <li class="card">
+                    <div class="box-img">
+                        <img src="{{basePath}}img/member_01.webp" alt="介紹1">
+                    </div>
+                    <span class="card-num">04</span>
+                    <span class="card-tit">News</span>
+                    <div class="card-txt">
+                        <span class="txt">test text</span>
+                        <span class="txt">test text</span>
+                        <span class="txt">test text</span>
+                    </div>
+                    <a href="{{basePath}}html-pages/page-news.html" class="btn btn-primary">View More</a>
+                </li>
             </ul>
         </div>
     </div>

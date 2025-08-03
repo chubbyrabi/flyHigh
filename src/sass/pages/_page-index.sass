@@ -5,63 +5,130 @@
     .section-opening
         position: relative
         height: 100vh
-        img
-            width: 200px
-            height: 200px
+        // .karasuno-logo,
+        .svgContainer.svg-karasuno
+            width: 20rem
+            height: 20rem
             position: absolute
             top: 50%
             left: 50%
             transform: translate(-50%, -50%)
+        // .karasuno-logo
+        //     opacity: 0
+        //     transition: opacity 0s
+        //     pointer-events: none
+        //     &.show
+        //         opacity: 1
+        //         transition: opacity 2s 2s
     // —————————————————————————————————————————————————— section-about
     .section-about
         .btn
             width: auto
         .section-cards
-            margin: 0 auto $page-padding
-            width: $section-width
-        .card img
-            aspect-ratio: 35 / 20
-            width: calc((#{$section-width} - #{$page-padding}) / 3)
+            margin-bottom: $page-padding
+            flex-wrap: nowrap
+            overflow-x: auto
+            overflow-y: hidden
+            .card img
+                aspect-ratio: 35 / 20
+            +media(mobile)
+                margin-left: calc( $padding * -1 )
+                margin-right: calc( $padding * -1 )
+                margin-bottom: $padding
+                +scrollBar_horizontal(0)
+                .card
+                    min-width: 50vw
+                    img
+                        width: 50vw
+            +media(pad)
+                margin-left: calc( $padding * -1 )
+                margin-right: calc( $padding * -1 )
+                margin-bottom: $padding
+                +scrollBar_horizontal(0)
+                .card
+                    min-width: 50vw
+                    img
+                        width: 50vw
+            +media(pc)
+                margin: 0 auto $page-padding
+                width: $section-width-pc
+                +scrollBar_horizontal(6px)
+                .card img
+                    width: calc((#{$section-width-pc} - #{$page-padding}) / 3)
         .section-desc
             font-size: 0
             .txt
                 display: inline-block
                 width: 50%
-                padding: 0 $page-padding
                 &:nth-of-type(1)
                     text-align: right
                     border-right: 1px solid $clr-white
+                    +media(mobile)
+                        padding-right: $padding
                 &:nth-of-type(2)
                     text-align: left
+                    +media(mobile)
+                        padding-left: $padding
+                +media(pad)
+                    padding: 0 $padding
+                +media(pc)
+                    padding: 0 $page-padding
 
     // —————————————————————————————————————————————————— section-team
     .section-team
         max-width: $page-width
         overflow: hidden
         .section-cards
-            position: relative
-            left: 50%
-            transform: translateX(-50%)
-            width: fit-content
+            // position: relative
+            // left: 50%
+            // transform: translateX(-50%)
+            // width: fit-content
             white-space: nowrap
+            +media(mobile)
+                margin-left: calc( $padding * -1 )
+                margin-right: calc( $padding * -1 )
+                +scrollBar_horizontal(0)
+                .card:first-child
+                    margin-left: $page-padding
+            +media(pad)
+                margin-left: calc( $padding * -1 )
+                margin-right: calc( $padding * -1 )
+                +scrollBar_horizontal(0)
+                .card:first-child
+                    margin-left: $page-padding
+            +media(pc)
+                +scrollBar_horizontal(6px)
         .card
             clip-path: polygon(#{$role-skew-percent} 0%, 100% 0%, calc(100% - #{$role-skew-percent}) 100%, 0% 100%)
-            &:not(:last-child)
-                margin-right: calc($padding - (#{$page-width} / #{$role-count-pc} * #{$role-skew-float}))
-        .card img
-            aspect-ratio: 400 / 566
-            width: calc(#{$page-width} / #{$role-count-pc})
+            img
+                aspect-ratio: 400 / 566
+            +media(mobile)
+                &:not(:last-child)
+                    margin-right: calc($padding - (#{$page-width} / #{$role-count-mobile} * #{$role-skew-float}))
+                img
+                    width: calc(#{$page-width} / #{$role-count-mobile})
+            +media(pad)
+                &:not(:last-child)
+                    margin-right: calc($padding - (#{$page-width} / #{$role-count-pad} * #{$role-skew-float}))
+                img
+                    width: calc(#{$page-width} / #{$role-count-pad})
+            +media(pc)
+                &:not(:last-child)
+                    margin-right: calc($padding - (#{$page-width} / #{$role-count-pc} * #{$role-skew-float}))
+                img
+                    width: calc(#{$page-width} / #{$role-count-pc})
 
     // —————————————————————————————————————————————————— section-news
     .section-news
-        max-width: $section-width
+        max-width: $section-width-pc
         .section-cards
             margin: 0 auto $page-padding
         .card
             cursor: pointer
-            &:hover
-                .hover-wrapper
-                    transform: translateY(-0.8rem)
+            +media(pc)
+                &:hover
+                    .hover-wrapper
+                        transform: translateY(-0.8rem)
         .hover-wrapper
             position: relative
             text-align: left
@@ -92,7 +159,7 @@
         background-color: $clr-gray-2
         .section-content
             margin: 0 auto $page-padding
-            width: $section-width
+            width: $section-width-pc
             text-align: left
         .social-icons,
         .btn-primary

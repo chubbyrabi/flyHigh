@@ -1,3 +1,98 @@
+@use 'base-color' as clr
+@use 'base-variables' as var
+@use "sass:map"
+
+// +media(mobile)
+// +media(pad)
+// +media(pc)
+@mixin media($type)
+	@if $type == mobile
+		@media (max-width: #{map.get(var.$breakpoints, mobile)})
+			@content
+	@else if $type == pad
+		@media (min-width: #{map.get(var.$breakpoints, pad-min)}) and (max-width: #{map.get(var.$breakpoints, pad-max)})
+			@content
+	@else if $type == pc
+		@media (min-width: #{map.get(var.$breakpoints, pc)})
+			@content
+
+// +media-min(100px)
+@mixin media-min($width)
+	@media (min-width: $width)
+		@content
+
+// +media-max(100px)
+@mixin media-max($width)
+	@media (max-width: $width)
+		@content
+
+// +container(mobile)
+// +container(pad)
+// +container(pc)
+// +container(100px)
+@mixin container($type)
+	@if $type == mobile
+		@container (max-width: #{map.get(var.$breakpoints, mobile)})
+			@content
+	@else if $type == pad
+		@container (min-width: #{map.get(var.$breakpoints, pad-min)}) and (max-width: #{map.get(var.$breakpoints, pad-max)})
+			@content
+	@else if $type == pc
+		@container (min-width: #{map.get(var.$breakpoints, pc)})
+			@content
+	@else
+		@container (width: #{$type})
+			@content
+
+// 省略號...
+@mixin ellipsis($lines: 1)
+	overflow: hidden
+	@if $lines == 1
+		white-space: nowrap
+		text-overflow: ellipsis
+	@else
+		display: -webkit-box
+		-webkit-line-clamp: $lines
+		-webkit-box-orient: vertical
+
+// grid 橫向均分
+@mixin grid-row
+	display: grid
+	grid-template-columns: repeat(auto-fit, minmax(0, 1fr))
+
+// grid 直向均分
+@mixin grid-col
+	display: grid
+	grid-template-rows: repeat(auto-fit, minmax(0, 1fr))
+
+// flex 橫排
+@mixin flex-row
+	display: flex
+	flex-direction: row
+
+// flex 直排
+@mixin flex-col
+	display: flex
+	flex-direction: column
+
+// flex 置中
+@mixin flex-center
+	display: flex
+	justify-content: center
+	align-items: center
+
+// 絕對定位置中
+@mixin absolute-center
+	position: absolute
+	top: 50%
+	left: 50%
+	transform: translate(-50%, -50%)
+	
+// 背景模糊
+@mixin blur($value: 5px)
+	backdrop-filter: blur($value)
+	-webkit-backdrop-filter: blur($value)
+
 // 橫的滾動條
 @mixin scrollBar_horizontal($height)
 	overflow-x: auto
@@ -11,9 +106,9 @@
 	&::-webkit-scrollbar-thumb
 		cursor: pointer
 		border-radius: $height
-		background-color: $clr-font-000_3
+		background-color: rgba(clr.$clr-white, .3)
 	&::-webkit-scrollbar-thumb:hover 
-		background-color: $clr-font-000_5
+		background-color: rgba(clr.$clr-white, .5)
 	&::-webkit-scrollbar-button,
 	&::-webkit-scrollbar-corner,
 	&::-webkit-resizer
@@ -32,15 +127,10 @@
 	&::-webkit-scrollbar-thumb
 		cursor: pointer
 		border-radius: $width
-		background-color: $clr-font-FFF_3
+		background-color: rgba(clr.$clr-white, .3)
 	&::-webkit-scrollbar-thumb:hover 
-		background-color: $clr-font-FFF_5
+		background-color: rgba(clr.$clr-white, .5)
 	&::-webkit-scrollbar-button,
 	&::-webkit-scrollbar-corner,
 	&::-webkit-resizer
 		background-color: transparent
-
-// 背景模糊
-@mixin blur($value: 5px)
-	backdrop-filter: blur($value)
-	-webkit-backdrop-filter: blur($value)

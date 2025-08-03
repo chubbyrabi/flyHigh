@@ -3,8 +3,7 @@
 $header-h: 2rem
 
 .site-header
-	position: sticky
-	// position: fixed
+	position: fixed
 	top: 0
 	left: 0
 	width: $page-width
@@ -13,6 +12,7 @@ $header-h: 2rem
 	align-items: center
 	gap: 1rem
 	pointer-events: none
+
 // —————————————————————————————————————————————————— header-logo
 .header-logo
 	margin-right: auto
@@ -21,15 +21,17 @@ $header-h: 2rem
 	pointer-events: auto
 	.logo
 		height: 100%
-.logo svg
-	// height: 2rem
-	height: 100%
-	fill: $clr-white
-	transition: fill .3s
-	&:hover
-		fill: $clr-main
+		svg
+			height: 100%
+			fill: $clr-white
+			transition: fill .3s
+			+media(pc)
+				&:hover
+					fill: $clr-main
+
 // —————————————————————————————————————————————————— header-nav
 .header-nav
+	display: none
 	pointer-events: auto
 	.nav-ul
 		li
@@ -40,6 +42,10 @@ $header-h: 2rem
 			transition: color .3s
 		.active
 			color: $clr-white
++media(pc)
+	.header-nav
+		display: block
+
 // —————————————————————————————————————————————————— header-hb
 .header-hb
 	pointer-events: auto
@@ -71,6 +77,58 @@ $header-h: 2rem
 			li 
 				+fontStyle(14)
 				color: $clr-white
+	+container(mobile)
+		.card-list
+			width: 100%
+			height: calc(100% - (#{$page-padding} * 2 + 2rem) * 2)
+			margin: 8rem auto
+			+grid-col
+			.card
+				overflow: hidden
+	+container(pc)
+		.card-list
+			margin: auto
+			height: 100%
+			width: calc(100% - (#{$page-padding} * 2 + 2rem + var(--scrollbar)) * 2)
+		.card
+			position: relative
+			padding-top: 20rem
+			padding-left: $page-padding
+			+media(pc)
+				&:hover
+					img
+						opacity: 1
+		.card-num,
+		.card-tit,
+		.card-txt,
+		.txt
+			position: relative
+			display: block
+	.card-num
+		font-size: 7rem
+		font-weight: bold
+		line-height: 1
+		color: $clr-white
+	.card-tit
+		+fontStyle(24)
+		color: $clr-white
+		margin-top: $page-padding
+	.btn
+		position: relative
+		margin-left: 0
+	.box-img
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		img
+			pointer-events: none
+			width: auto
+			height: 100%
+			object-position: top right
+			opacity: 0
+			transform: opacity .3s
 
 // —————————————————————————————————————————————————— home header-nav
 .page-home
@@ -106,7 +164,6 @@ $header-h: 2rem
 					left: -6.5px
 					background-color: $clr-white
 					border: 3px solid $clr-black
-					// outline: 1px solid $clr-gray-8
 					outline: 1px solid $clr-gray-8
 
 // —————————————————————————————————————————————————— page header-nav
@@ -123,7 +180,6 @@ body:not(.page-home)
 // —————————————————————————————————————————————————— at-opening 動畫
 .page-home
 	header
-		// padding: $page-padding
 		transition: 0s
 	.header-logo,
 	.header-hb
@@ -131,10 +187,8 @@ body:not(.page-home)
 		transition: opacity .5s .1s
 	.header-nav
 		opacity: 1
-		// left: $page-padding
-		// height: calc( 100vh - 18rem )
 		transition: opacity .5s, left .5s, height .5s .1s
-.page-home.at-opening
+.page-home:not(.modal-open).at-opening
 	line-height: 0
 	header
 		pointer-events: none
@@ -148,7 +202,6 @@ body:not(.page-home)
 		left: 0
 		height: 0
 		transition: opacity .5s .1s, left .5s .1s, height .5s
-
 // —————————————————————————————————————————————————— active 動畫
 .header-hb
 	.hb-btn
@@ -171,3 +224,31 @@ body:not(.page-home)
 		left: 0
 		opacity: 1
 		transition: opacity .3s, left 0s
+
+	// 卡片進場動畫
+	.card-list
+		.card
+			opacity: 0
+			animation: slideInFromRight .3s ease-out forwards
+			// animation: slideInFromLeft .3s ease-out forwards
+			// 動態延遲
+			@for $i from 2 through 4
+				&:nth-child(#{$i})
+					// animation-delay: #{(4 - $i) * 0.1}s		// 右 → 左
+					animation-delay: #{($i - 1) * 0.1}s			// 左 → 右
+
+@keyframes slideInFromLeft
+	from
+		transform: translateX(-100%)
+		opacity: 0
+	to
+		transform: translateX(0)
+		opacity: 1
+
+@keyframes slideInFromRight
+	from
+		transform: translateX(100%)
+		opacity: 0
+	to
+		transform: translateX(0)
+		opacity: 1

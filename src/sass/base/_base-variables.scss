@@ -6,15 +6,25 @@
     --scrollbar: 0;
 }
 
+// 斷點
+$breakpoints: (
+	mobile: 767px,
+	pad-min: 768px,
+	pad-max: 1279px,
+	pc: 1280px
+);
+
 // 內文最大寬度
 $page-width: calc(100vw - var(--scrollbar));
-$section-width: 1140px;
-$reading-width: 860px;
+$section-width-pc: 1140px;
+$reading-width-pc: 860px;
 
 $page-padding: 3rem;
 $padding: 1.5rem;
 
 // 角色-顯示數量
+$role-count-mobile: 2.5;
+$role-count-pad: 4;
 $role-count-pc: 5;
 
 // 角色-傾斜角度

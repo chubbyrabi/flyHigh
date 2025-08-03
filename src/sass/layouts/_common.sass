@@ -1,5 +1,13 @@
 @use '../base/global' as *;
 
+.site-header,
+.site-main,
+.site-footer
+	container-type: inline-size
+	container-name: site
+	width: $page-width
+	overflow: hidden
+
 // z-index
 header
 	z-index: 5
@@ -18,7 +26,7 @@ header
 	&.notice
 		color: $clr-second
 
-.visually-hidden
+.visually-hide
 	position: absolute !important
 	width: 1px !important
 	height: 1px !important
@@ -29,8 +37,8 @@ header
 	white-space: nowrap !important
 	border: 0 !important
 
-body:not(.page-home)
-	min-height: 100vh
+// body:not(.page-home)
+// 	min-height: 100vh
 
 .box-img
 	overflow: hidden
@@ -47,13 +55,18 @@ body:not(.page-home)
 // —————————————————————————————————————————————————— section
 section
 	margin: auto
-	padding: $page-padding 0
 	text-align: center
+	+media(mobile)
+		padding: $page-padding $padding
+	+media(pad)
+		padding: $page-padding $padding
+	+media(pc)
+		padding: $page-padding 0
 
 .section-tit
 	margin: $page-padding auto
 	width: fit-content
-	max-width: $section-width
+	max-width: $section-width-pc
 	color: $clr-white
 	&.size-l
 		+fontStyle(48)
@@ -65,7 +78,10 @@ section
 
 .section-desc
 	margin: 0 auto $page-padding
-	width: $section-width
+	// +media(mobile)
+	// +media(pad)
+	+media(pc)
+		width: $section-width-pc
 	.txt
 		line-height: 2
 		// color: $clr-gray-8
@@ -78,7 +94,7 @@ section
 		font-size: initial
 
 // —————————————————————————————————————————————————— 隱藏滾動條
-.scroll-hidden
+.scrollbar-hidden
 	overflow: auto				// 或 scroll 看情況
 	-ms-overflow-style: none	// IE & Edge
 	scrollbar-width: none		// Firefox
@@ -103,16 +119,16 @@ section
 .drag-scroll-mask
 	// 左邊還有 (遮罩)
 	&.left-active
-		-webkit-mask-image: linear-gradient(to left, #000 90%, transparent 100%)
-		mask-image: linear-gradient(to left, #000 90%, transparent 100%)
+		-webkit-mask-image: linear-gradient(90deg, transparent 1%, #000 10%)
+		mask-image: linear-gradient(90deg, transparent 1%, #000 10%)
 	// 右邊還有 (遮罩)
 	&.right-active
-		-webkit-mask-image: linear-gradient(to right, #000 90%, transparent 100%)
-		mask-image: linear-gradient(to right, #000 90%, transparent 100%)
+		-webkit-mask-image: linear-gradient(90deg, #000 90%, transparent 99%)
+		mask-image: linear-gradient(90deg, #000 90%, transparent 99%)
 	// 兩邊都有 (遮罩)
 	&.left-active.right-active
-		-webkit-mask-image: linear-gradient(to left, transparent 0%, #000 10%, #000 90%,transparent 100%)
-		mask-image: linear-gradient(to left, transparent 0%, #000 10%, #000 90%,transparent 100%)
+		-webkit-mask-image: linear-gradient(90deg, transparent 1%, #000 10%, #000 90%, transparent 99%)
+		mask-image: linear-gradient(90deg, transparent 1%, #000 10%, #000 90%, transparent 99%)
 
 // —————————————————————————————————————————————————— 覆蓋版本
 .drag-scroll-overlay
