@@ -1,0 +1,1 @@
+export function getOffsetTop(t){let e=0;for(;t;)e+=t.offsetTop,t=t.offsetParent;return e}

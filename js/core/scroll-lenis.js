@@ -1,0 +1,1 @@
+import e from"../../library/lenis.mjs";let n=null;export function initLenis(){n=new e({smooth:!0,wheelMultiplier:1.2,lerp:.08}),requestAnimationFrame((function e(i){n.raf(i),requestAnimationFrame(e)}))}export function getLenis(){return n}export{n as lenis};

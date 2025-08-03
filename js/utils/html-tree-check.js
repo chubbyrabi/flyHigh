@@ -1,0 +1,1 @@
+export function HTMLTree(){const e=function e(t,o=0,n=[]){let s=t,d=o;if(n.some((e=>t.classList.contains(e))))return{deepest:null,depth:-1};for(let l of t.children){const{deepest:t,depth:c}=e(l,o+1,n);c>d&&(s=t,d=c)}return{deepest:s,depth:d}}(document.body,0,["guide"]);e.deepest?(console.log("最深的標籤:",e.deepest.outerHTML),console.log("層級數:",e.depth)):console.log("未找到符合條件的標籤。")}

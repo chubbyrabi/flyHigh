@@ -1,0 +1,1 @@
+export const basePath=document.querySelector("base")?.getAttribute("href")||"/";

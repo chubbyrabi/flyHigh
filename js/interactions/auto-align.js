@@ -1,0 +1,1 @@
+export function autoAlignScroll(){const t=Array.from(document.querySelectorAll(".to-left, .to-center, .to-right"));function o(){t.forEach((t=>{const o=t.scrollWidth-t.clientWidth,c=t.classList.contains("to-center")?o/2:t.classList.contains("to-right")?o:0;t.scrollLeft=c}))}[300,600].forEach((t=>setTimeout(o,t)))}
