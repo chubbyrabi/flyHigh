@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/js/backup/page-teams.js"],
+  "sourcesContent": ["$(function () {\r\n    breadcrumb()\r\n})"],
+  "mappings": "AAAA,EAAE,UAAY,CACV,WAAW,CACf,CAAC",
+  "names": []
+}

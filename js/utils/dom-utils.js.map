@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/js/utils/dom-utils.js"],
+  "sourcesContent": ["// js/utils/dom-utils.js\r\n\r\n// \u53D6\u5F97\u5143\u7D20\u76F8\u5C0D\u65BC\u6587\u4EF6\u7684\u504F\u79FB\u8DDD\u96E2\r\nexport function getOffsetTop(elem) {\r\n    // let offsetLeft = 0;\r\n    let offsetTop = 0;\r\n    while (elem) {\r\n        // offsetLeft += element.offsetLeft;\r\n        offsetTop += elem.offsetTop;\r\n        elem = elem.offsetParent;\r\n    }\r\n    // return [offsetLeft, offsetTop];\r\n    return offsetTop;\r\n}"],
+  "mappings": "AAGO,SAASA,EAAaC,EAAM,CAE/B,IAAIC,EAAY,EAChB,KAAOD,GAEHC,GAAaD,EAAK,UAClBA,EAAOA,EAAK,aAGhB,OAAOC,CACX",
+  "names": ["getOffsetTop", "elem", "offsetTop"]
+}

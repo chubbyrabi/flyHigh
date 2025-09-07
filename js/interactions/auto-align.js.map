@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/js/interactions/auto-align.js"],
+  "sourcesContent": ["// js/interactions/auto-align.js\r\n\r\nexport function autoAlignScroll() {\r\n\r\n    // \u81EA\u52D5\u6372\u52D5\u5BB9\u5668\uFF08\u7F6E\u5DE6\u3001\u7F6E\u4E2D\u3001\u7F6E\u53F3\uFF09\r\n    const els = Array.from(\r\n        document.querySelectorAll('.to-left, .to-center, .to-right')\r\n    );\r\n\r\n    function align() {\r\n        els.forEach(el => {\r\n            const max = el.scrollWidth - el.clientWidth;    // \u80FD\u6372\u52D5\u7684\u6700\u5927\u8DDD\uFF08\u6A6B\u5411\uFF09\r\n            const x = el.classList.contains('to-center')\r\n                ? max / 2\r\n                : el.classList.contains('to-right')\r\n                ? max\r\n                : 0;\r\n            el.scrollLeft = x;\r\n        });\r\n    }\r\n\r\n    // \u8F09\u5165\u5F8C\u5206\u5169\u6B21\u5C0D\u9F4A\uFF0C\u4EE5\u89E3\u6C7A\u5167\u5BB9\u5EF6\u9072\u6E32\u67D3\u554F\u984C\r\n    [300, 600].forEach(delay => setTimeout(align, delay));\r\n}"],
+  "mappings": "AAEO,SAASA,GAAkB,CAG9B,MAAMC,EAAM,MAAM,KACd,SAAS,iBAAiB,iCAAiC,CAC/D,EAEA,SAASC,GAAQ,CACbD,EAAI,QAAQE,GAAM,CACd,MAAMC,EAAMD,EAAG,YAAcA,EAAG,YAC1BE,EAAIF,EAAG,UAAU,SAAS,WAAW,EACrCC,EAAM,EACND,EAAG,UAAU,SAAS,UAAU,EAChCC,EACA,EACND,EAAG,WAAaE,CACpB,CAAC,CACL,CAGA,CAAC,IAAK,GAAG,EAAE,QAAQC,GAAS,WAAWJ,EAAOI,CAAK,CAAC,CACxD",
+  "names": ["autoAlignScroll", "els", "align", "el", "max", "x", "delay"]
+}

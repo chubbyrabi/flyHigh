@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/js/core/config.js"],
+  "sourcesContent": ["// js/core/config.js\r\n\r\nexport const basePath = document.querySelector('base')?.getAttribute('href') || '/';"],
+  "mappings": "AAEO,MAAMA,EAAW,SAAS,cAAc,MAAM,GAAG,aAAa,MAAM,GAAK",
+  "names": ["basePath"]
+}
